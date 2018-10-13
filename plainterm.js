@@ -75,6 +75,16 @@ function println(content) {
 //Reads text on Enter press
 function run(cmd) {
     if(event.keyCode == 13) {
-        println(cmd.value)
+        println(cmd.value);
+        evaluate(cmd.value);
+        cmd.value = "";
     }
+}
+
+//Eval as command
+function evaluate(cmd) {
+    comms = cmd.split(/\s+/);
+    comm = comms[0];
+    comms.shift();
+    bash.commands[comm].func(comms);
 }
