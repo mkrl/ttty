@@ -1,3 +1,6 @@
+# Server scripts for development
+server.sh
+server.bat
 # Logs
 logs
 *.log

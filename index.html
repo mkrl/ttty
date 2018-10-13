@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>mkrl.xyz</title>
+  <meta name="description" content="A personal website of mine. Why are you here?">
+  <meta name="author" content="mkrl">
+  <link rel="stylesheet" href="s.css">
+</head>
+<body>
+
+<center>Hello</center>
+
+
+
+<script src="./plainterm.js"></script>
+<script>
+var settings = {
+    welcome: "Welcome to Test Terminal emulator",
+    prompt: "user@mkrl.xyz:~$",
+    commands: {
+        test: {
+            name: "test",
+            description: "A test command with no args",
+            parameters: [],
+            func: function(){println("testing things")}
+        },
+        echo: {
+            name: "echo",
+            description: "A test command with one echo arg",
+            parameters: ["a string to be echoed in console"],
+            func: function(params){println(params[0])}
+        }
+    }
+};
+
+term_init(settings);
+</script>
+</body>
+</html>
