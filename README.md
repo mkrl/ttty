@@ -14,7 +14,7 @@ Include the js in your page:
 
 Initialize with parameters:
 
-```html
+```javascript
 var settings = {
     id: "terminal", //A DOM id to initialize terminal in
     welcome: "Welcome to plainterm.js terminal emulator", //A welcome message that is being printed on initialization
