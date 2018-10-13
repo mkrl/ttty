@@ -86,5 +86,9 @@ function evaluate(cmd) {
     comms = cmd.split(/\s+/);
     comm = comms[0];
     comms.shift();
-    bash.commands[comm].func(comms);
+    if (Object.getOwnPropertyNames(bash.commands).indexOf(comm) > -1) {
+        bash.commands[comm].func(comms);
+    } else {
+        println(comm + " - command not found")
+    }
 }

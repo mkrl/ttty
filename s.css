@@ -5,8 +5,11 @@
     overflow-x: hidden;
     margin: 0 auto;
     border: 1px black solid;
+    background-color: black;
+    color: white;
     padding: 15px;
     position: relative;
+    font-family: "Courier New";
 }
 
 .terminal-type {
@@ -15,4 +18,21 @@
 }
 .terminal-type > input{
     flex-grow: 2;
+    background: transparent;
+    border: 0;
+    color: white;
+    padding-left: 4px;
+    font-family: "Courier New";
+}
+.terminal-type > input:focus{
+    border: none !important;
+    outline: none !important;
+}
+
+.terminal-container {
+    
+}
+
+.terminal-container > p{
+    margin: 0;
 }
