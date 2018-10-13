@@ -2,7 +2,6 @@
 
 A dead simple lightweight pure Javascript terminal "emulator" that is intended to be used for entertainment purposes.
 
-Current state: operates within browser console window.
 
 ## Usage
 

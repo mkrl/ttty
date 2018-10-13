@@ -1,6 +1,6 @@
 //Declare master object
 var bash = {commands: {},
-    version: "0.1"
+    version: "0.2"
 }
 
 //Master command constructor
