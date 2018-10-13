@@ -68,14 +68,14 @@ function term_init(settings) {
 //Prints a newline in console
 function println(content) {
     var cmd = document.createElement("p");
-    cmd.innerHTML = settings.prompt + content;
+    cmd.innerHTML = content;
     bash.container.appendChild(cmd);
 }
 
 //Reads text on Enter press
 function run(cmd) {
     if(event.keyCode == 13) {
-        println(cmd.value);
+        println(settings.prompt + cmd.value);
         evaluate(cmd.value);
         cmd.value = "";
     }
