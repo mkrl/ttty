@@ -1,0 +1,16 @@
+#terminal {
+    width: 500px;
+    height: 600px;
+    overflow: auto;
+    margin: 0 auto;
+    border: 1px black solid;
+    padding: 15px;
+    position: relative;
+}
+
+.terminal-type {
+    width: 99%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

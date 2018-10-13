@@ -16,7 +16,8 @@ Initialize with parameters:
 
 ```html
 var settings = {
-    welcome: "Welcome to plainterm.js emulator",
+    id: "terminal", //A DOM id to initialize terminal in
+    welcome: "Welcome to plainterm.js terminal emulator", //A welcome message that is being printed on initialization
     prompt: "user@mkrl.xyz:~$",
     commands: {
         test: {
