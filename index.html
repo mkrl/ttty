@@ -24,7 +24,6 @@ var settings = {
         test: {
             name: "test",
             description: "A test command with no args",
-            parameters: [],
             func: function(){println("testing things")}
         },
         echo: {
@@ -32,6 +31,12 @@ var settings = {
             description: "A test command with one echo arg",
             parameters: ["a string to be echoed in console"],
             func: function(params){println(params[0])}
+        },
+        multiply: {
+            name: "multiply",
+            description: "Multiply two numbers",
+            parameters: ["number one", "number two"],
+            func: function(params){println(params[0]*params[1])}
         }
     }
 };

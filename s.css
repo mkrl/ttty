@@ -1,3 +1,6 @@
+/* plainterm.js
+https://github.com/mkrl/plainterm.js */
+
 #terminal {
     width: 500px;
     height: 600px;
@@ -21,8 +24,9 @@
     background: transparent;
     border: 0;
     color: white;
-    padding-left: 4px;
+    padding-left: 7pt;
     font-family: "Courier New";
+    font-size: 16px;
 }
 .terminal-type > input:focus{
     border: none !important;
