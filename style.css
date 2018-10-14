@@ -1,12 +1,11 @@
 /* plainterm.js
 https://github.com/mkrl/plainterm.js */
 
-#terminal {
+.terminal {
     width: 500px;
     height: 600px;
     overflow-y: auto;
     overflow-x: hidden;
-    margin: 0 auto;
     border: 1px black solid;
     background-color: black;
     color: white;

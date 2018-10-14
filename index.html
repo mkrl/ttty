@@ -2,47 +2,55 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>mkrl.xyz</title>
-        <meta name="description" content="A personal website of mine. Why are you here?">
-        <meta name="author" content="mkrl">
-        <link rel="stylesheet" href="s.css">
+        <title>plainterm.js</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+        .container > div {
+            margin: 0 auto;
+        }
+        </style>
     </head>
 <body>
 
-<center><h3>Hello</h3></center>
+<center><h3>Terminal</h3></center>
 
+<div class="container">
 <div id="terminal">
+</div>
 </div>
 
 <script src="./plainterm.js"></script>
 <script>
 var settings = {
     id: "terminal",
-    welcome: "Welcome to plainterm.js terminal emulator",
     prompt: "user@mkrl.xyz:~$ ",
     commands: {
-        test: {
-            name: "test",
-            description: "a test command with no args",
-            func: function(){println("testing things")}
+        about: {
+            name: "about",
+            description: "about the module",
+            func: function(){plainterm.print('A dead simple lightweight pure Javascript terminal "emulator" that is intended to be used for entertainment purposes. Written in one night.')}
+        },
+        repo: {
+            name: "repo",
+            description: "GitHub repository",
+            func: function(){plainterm.print('<a href="https://github.com/mkrl/plainterm.js" target="blank">Click</a>')}
         },
         echo: {
             name: "echo",
             description: "a test command with one echo arg",
             parameters: ["a string to be echoed in console"],
-            func: function(params){println(params[0])}
+            func: function(params){plainterm.print(params[0])}
         },
         multiply: {
             name: "multiply",
             description: "multiply two numbers",
             parameters: ["number one", "number two"],
-            func: function(params){println(params[0]*params[1])}
+            func: function(params){plainterm.print(params[0]*params[1])}
         }
     }
 };
 
-term_init(settings);
-println(settings.welcome);
+plainterm.init(settings);
 </script>
 </body>
 </html>
