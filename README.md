@@ -21,14 +21,20 @@ var settings = {
     commands: {
         echo: {
             name: "echo", //Command name
-            description: "A test command with one echo arg", //Help text to be displayed when `help` command is called
+            description: "a test command with one echo arg", //Help text to be displayed when `help` command is called
             parameters: ["a string to be echoed in console"], //An optional array of successive parameter descriptions, used when the command that needs args is being called without any args
             func: function(params){println(params[0])} //Function to be called when the command is executed. Accepts an array of parameters, ordered in the same way as in the previous property
         },
         test: {
             name: "test", 
-            description: "A test command with no args", 
+            description: "a test command with no args", 
             func: function(){println("testing things")} 
+        },
+        multiply: {
+            name: "multiply",
+            description: "Multiply two numbers",
+            parameters: ["number one", "number two"],
+            func: function(params){println(params[0]*params[1])}
         }
     }
 };
@@ -43,14 +49,16 @@ term_init(settings);
 
 ## API:
 
-`println(text)` - Print a text in terminal starting from a new line
+`println(text, command)` - Print a text in terminal starting from a new line. Command - optional, count given string as a command (prepend prompt, syntax highlight).
 
 `bash.version` - plainterm.js version
 `bash.commands` - an object containing all available commands available
 
-`bash.commands.command`: 
 
-`bash.commands.command.name` - command name
-`bash.commands.command.description` - command description
-`bash.commands.command.parameters` - command parameters
-`bash.commands.command.func` - retrieve a function. call with `bash.commands.command.func()`
+`bash.commands.[command].name` - command name
+
+`bash.commands.[command].description` - command description
+
+`bash.commands.[command].parameters` - command parameters
+
+`bash.commands.[command].func` - retrieve a function. call with `bash.commands.[command].func()`

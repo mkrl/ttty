@@ -23,18 +23,18 @@ var settings = {
     commands: {
         test: {
             name: "test",
-            description: "A test command with no args",
+            description: "a test command with no args",
             func: function(){println("testing things")}
         },
         echo: {
             name: "echo",
-            description: "A test command with one echo arg",
+            description: "a test command with one echo arg",
             parameters: ["a string to be echoed in console"],
             func: function(params){println(params[0])}
         },
         multiply: {
             name: "multiply",
-            description: "Multiply two numbers",
+            description: "multiply two numbers",
             parameters: ["number one", "number two"],
             func: function(params){println(params[0]*params[1])}
         }
@@ -42,6 +42,7 @@ var settings = {
 };
 
 term_init(settings);
+println(settings.welcome);
 </script>
 </body>
 </html>
