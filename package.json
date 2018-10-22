@@ -1,0 +1,35 @@
+{
+  "name": "plainterm.js",
+  "version": "0.4.2",
+  "description": "A dead simple lightweight pure Javascript terminal \"emulator\" that mimics terminal behaviour in browser.",
+  "main": "plainterm.js",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-uglify-es": "^3.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkrl/plainterm.js.git"
+  },
+  "keywords": [
+    "javascript",
+    "js",
+    "terminal",
+    "bash",
+    "console",
+    "commands",
+    "term",
+    "simple"
+  ],
+  "author": "Mikhail Korolev",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mkrl/plainterm.js/issues"
+  },
+  "homepage": "https://github.com/mkrl/plainterm.js#readme"
+}
