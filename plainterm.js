@@ -10,7 +10,7 @@ var plainterm = (function() {
     };
 
     //Master command constructor
-    function Command(name, description, parameters = [], func) {
+    function Command(name, description, func, parameters = []) {
         this.name = name;
         this.description = description;
         this.parameters = parameters;
@@ -21,7 +21,7 @@ var plainterm = (function() {
             }
             this.func = function(params) {
                 params = params || false;
-                if ((params == false)||(params.length < parameters.length)) {
+                if ((params === false)||(params.length < parameters.length)) {
                 println("usage: " + name + pnames);
                 } else {
                     func(params);
@@ -80,7 +80,7 @@ var plainterm = (function() {
     }
 
     function addcommand(cmd) {
-        bash.commands[cmd.name] = new Command(cmd.name, cmd.description, cmd.parameters, cmd.func);
+        bash.commands[cmd.name] = new Command(cmd.name, cmd.description, cmd.func, cmd.parameters);
     }
     
     
@@ -151,7 +151,7 @@ var plainterm = (function() {
         bash.container.area.style.display = "none";
         var line = document.createElement("p");
         bash.container.display.appendChild(line);
-        if (command == true) {
+        if (command === true) {
             line.innerHTML = bash.prompt;
         }
         var i = 0;
@@ -193,7 +193,7 @@ var plainterm = (function() {
 
     //Constructing default help command
     function bind_help(help_active) {
-        if (help_active == true) {
+        if (help_active === true) {
         bash.commands.help = new Command("help","shows a help message", [],
             function(){
                 Object.getOwnPropertyNames(bash.commands).map(function(cmd){

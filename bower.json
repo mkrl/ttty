@@ -1,0 +1,30 @@
+{
+  "name": "plainterm.js",
+  "description": "A dead simple lightweight pure Javascript terminal \"emulator\" that mimics terminal behaviour in browser.",
+  "main": [
+      "build/plainterm.js.min.js",
+      "build/plainterm.js.min.css"
+  ],
+  "authors": [
+    "Mikhail Korolev"
+  ],
+  "license": "GPL-3.0",
+  "keywords": [
+    "javascript",
+    "js",
+    "terminal",
+    "bash",
+    "console",
+    "commands",
+    "term",
+    "simple"
+  ],
+  "homepage": "https://github.com/mkrl/plainterm.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
