@@ -5,8 +5,8 @@ https://github.com/mkrl/plainterm.js */
 var plainterm = (function() {
 
     //Master object
-    var bash = {commands: {}, history: [], last: 0,
-        version: "0.4.1"
+    var bash = {commands: {}, history: [], last: 0, process: false,
+        version: "0.4.2"
     };
 
     //Master command constructor
@@ -38,7 +38,7 @@ var plainterm = (function() {
     function term_init(settings) {
         settings.id = settings.id || "terminal"; /* do not use "||" for default values and use custom function instead */
         settings.welcome = settings.welcome || "plainterm.js v. " + bash.version;
-        settings.prompt = settings.prompt || "$ ";
+        bash.prompt = settings.prompt || "$ ";
         if (settings.help === undefined) {
             settings.help = true;
         }
@@ -61,7 +61,7 @@ var plainterm = (function() {
         var container = document.createElement("div");
         var input_container = document.createElement("div");
         var prompt_span = document.createElement("span");
-        prompt_span.innerHTML = settings.prompt;
+        prompt_span.innerHTML = bash.prompt;
         var input = document.createElement("input");
         container.className = "terminal-container";
         input_container.className = "terminal-type";
@@ -91,7 +91,7 @@ var plainterm = (function() {
             var cmd = document.createElement("span");
             cmd.innerHTML = content;
             cmd.className = "command";
-            line.innerHTML = settings.prompt;
+            line.innerHTML = bash.prompt;
             bash.container.display.appendChild(line);
             line.appendChild(cmd);
 
@@ -131,16 +131,24 @@ var plainterm = (function() {
         }
     }
 
-    //Typing
-    function type(text, speed, command) {
+    //Running a process
+    function process_run() {
         bash.container.area.style.display = "none";
-        if (command === undefined) {
-            command = false;
-        }
+        bash.process = true;
+        bash.prompt = "";
+    }
+    function process_stop() {
+        bash.container.area.style.display = "flex";
+        bash.process = false;
+        bash.prompt = settings.prompt;
+    }
+    //Typing
+    function type(text, speed, command = false) {
+        bash.container.area.style.display = "none";
         var line = document.createElement("p");
         bash.container.display.appendChild(line);
         if (command == true) {
-            line.innerHTML = settings.prompt;
+            line.innerHTML = bash.prompt;
         }
         var i = 0;
         function typing() {
@@ -148,7 +156,7 @@ var plainterm = (function() {
                 line.innerHTML += text.charAt(i);
                 i++;
                 setTimeout(typing, speed);
-            } else {
+            } else if (bash.process === false) {
                 bash.container.area.style.display = "flex";
             }
         }
@@ -197,7 +205,9 @@ var plainterm = (function() {
         run: run,
         print: println,
         hist: get_from_history,
-        type: type
+        type: type,
+        start: process_run,
+        stop: process_stop
     };
 })();
 

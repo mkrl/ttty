@@ -56,7 +56,7 @@ plainterm.init(settings);
 
 `help` - Display a list of all commands with descriptions
 
-`command` - Execute a command. Will display "Usage: command [parameter 1 description] [parameter 2 description], etc.", when needs args but called without them.
+`command` - Execute a command. Will display "Usage: command [parameter 1 description] [parameter 2 description], etc.", when it requires arguments but is called without them.
 
 ## API
 
@@ -65,9 +65,11 @@ plainterm.init(settings);
 | Method  | Description | Parameters |
 | ------------- | ------------- | ------------- |
 | `init(settings)`  | Initialize a terminal in a DOM with given ID | `settings` object. |
-| `print(text, c)`  | Prints a given text in the terminal  | `text` - String, `c` - Boolean, optional, defaults to false. Count given string as a command (displays prompt, syntax highlight and appears in history) |
+| `print(text, c)`  | Prints a given text in the terminal (accepts raw HTML)  | `text` - String, `c` - Boolean, optional, defaults to false. Count given string as a command (displays prompt, syntax highlight and appears in history) |
 | `run(text)`  | Emulates a command execution in a terminal (acts the same way as a user would have typed and pressed Enter)  | `text` - String |
 | `hist(up)`  | Search in command history. Returns string.  | `up` - Boolean, optional. Defaults to true. Upward/downward search. |
+| `start()`  | Starts a "foreground process": user input is blocked and command prompt never appears. |  |
+| `stop()`  | Stops "foreground process". |  |
 | `type(text, speed, command)`  | Prints a text with "typing" effect. Hides and blocks user input while typing. | `text` - String, text to be printed. `speed` - integer, miliseconds. The higher the number, the slower. `command` - boolean, prepend/hide command line prompt. |
 
 ### settings object

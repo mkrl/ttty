@@ -2,8 +2,6 @@
 https://github.com/mkrl/plainterm.js */
 
 .terminal {
-    width: 500px;
-    height: 600px;
     overflow-y: auto;
     overflow-x: hidden;
     border: 1px black solid;
@@ -18,12 +16,15 @@ https://github.com/mkrl/plainterm.js */
     width: 100%;
     display: flex;
 }
+
+.terminal-type > span {
+    padding-right: 7pt;
+}
 .terminal-type > input{
     flex-grow: 2;
     background: transparent;
     border: 0;
     color: white;
-    padding-left: 7pt;
     font-family: "Courier New";
     font-size: 16px;
 }
@@ -32,10 +33,6 @@ https://github.com/mkrl/plainterm.js */
     outline: none !important;
 }
 
-.terminal-container {
-    
-}
-
-.terminal-container > p{
+.terminal-container > p {
     margin: 0;
 }
