@@ -16,11 +16,17 @@ Features:
 
 ## Usage
 
+Download the latest compiled JS and CSS release or install with Bower:
+
+`bower install plainterm.js`
+
 Include the js in your page:
 
 ```html
 <script src="./plainterm.js"></script>
 ```
+
+
 
 Initialize with parameters:
 
