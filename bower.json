@@ -2,8 +2,8 @@
   "name": "plainterm.js",
   "description": "A dead simple lightweight pure Javascript terminal \"emulator\" that mimics terminal behaviour in browser.",
   "main": [
-      "build/plainterm.js.min.js",
-      "build/plainterm.js.min.css"
+      "plainterm.js",
+      "plainterm.js.css"
   ],
   "authors": [
     "Mikhail Korolev"
