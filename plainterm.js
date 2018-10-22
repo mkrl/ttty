@@ -6,8 +6,8 @@ var plainterm = (function() {
 
     //Master object
     var bash = {commands: {}, history: [], last: 0,
-        version: "0.4"
-    }
+        version: "0.4.1"
+    };
 
     //Master command constructor
     function Command(name, description, parameters = [], func) {
@@ -16,7 +16,7 @@ var plainterm = (function() {
         this.parameters = parameters;
         if (parameters.length > 0) {
             var pnames = "";
-            for (p of parameters) {
+            for (var p of parameters) {
                 pnames = pnames + " [" + p + "]";
             }
             this.func = function(params) {
@@ -26,7 +26,7 @@ var plainterm = (function() {
                 } else {
                     func(params);
                 }
-            }
+            };
         } else {
             this.func = func;
         }
@@ -39,12 +39,17 @@ var plainterm = (function() {
         settings.id = settings.id || "terminal";
         settings.welcome = settings.welcome || "plainterm.js v. " + bash.version;
         settings.prompt = settings.prompt || "$ ";
-        for (o of Object.keys(settings.commands)) {
+        settings.help = settings.help || true;
+        bash.help = true;
+        for (var o of Object.keys(settings.commands)) {
             var cmd = settings.commands[o];
             addcommand(cmd);
         }
-        build_tree(document.getElementById(settings.id));
+        bash.container = document.getElementById(settings.id);
+        build_tree(bash.container);
         println(settings.welcome);
+        var event = new CustomEvent('onInit');
+        bash.container.dispatchEvent(event);
     }
 
 
@@ -62,13 +67,13 @@ var plainterm = (function() {
         input.setAttribute("onkeypress", "plainterm.run(this)");
         dom.appendChild(container);
         dom.appendChild(input_container);
-        for (e of document.getElementsByClassName("terminal-type")) {
+        for (var e of document.getElementsByClassName("terminal-type")) {
             e.appendChild(prompt_span);
             e.appendChild(input);
         }
-        bash.container = dom.firstElementChild;
+        bash.container.display = dom.firstElementChild;
         bash.container.input = input;
-        dom.onclick = function() {input.focus()}
+        dom.onclick = function() {input.focus();};
     }
 
     function addcommand(cmd) {
@@ -84,24 +89,29 @@ var plainterm = (function() {
             cmd.innerHTML = content;
             cmd.className = "command";
             line.innerHTML = settings.prompt;
-            bash.container.appendChild(line);
+            bash.container.display.appendChild(line);
             line.appendChild(cmd);
+
         } else {
             line.innerHTML = content;
-            bash.container.appendChild(line);
+            bash.container.display.appendChild(line);
         }
     }
 
     //Eval as command
     function evaluate(cmd) {
-        comms = cmd.split(/\s+/);
-        comm = comms[0];
+        var comms = cmd.split(/\s+/);
+        var comm = comms[0];
         comms.shift();
+        var valid_event = new CustomEvent('onCommand');
+        var invalid_event = new CustomEvent('onCommand404');
         if (Object.getOwnPropertyNames(bash.commands).indexOf(comm) > -1) {
             bash.commands[comm].func(comms);
             bash.history.unshift(cmd);
+            bash.container.dispatchEvent(valid_event);
         } else {
-            println(comm + " - command not found")
+            println(comm + " - command not found");
+            bash.container.dispatchEvent(invalid_event);
         }
     }
 
@@ -110,7 +120,7 @@ var plainterm = (function() {
         if(event.keyCode == 13) {
             println(cmd.value, true);
             if (cmd.value.length > 0) {
-                evaluate(cmd.value)
+                evaluate(cmd.value);
             }
             cmd.value = "";
             bash.last = 0;
@@ -145,12 +155,14 @@ var plainterm = (function() {
     });
 
     //Constructing default help command
+    if bash.help {
     bash.commands.help = new Command("help","shows a help message", [],
         function(){
             Object.getOwnPropertyNames(bash.commands).map(function(cmd){
                println(bash.commands[cmd].name + " - " + bash.commands[cmd].description);
             });
         });
+    }
 
     //API
     return {
@@ -158,16 +170,11 @@ var plainterm = (function() {
         run: run,
         print: println,
         hist: get_from_history
-    }
-
+    };
 })();
 
+var ee = document.getElementById('terminal');
 
-
-
-
-
-
-
-
-
+ee.addEventListener('onInit', function (elem) {
+    console.log(elem);
+}, false);

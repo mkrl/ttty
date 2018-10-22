@@ -1,6 +1,16 @@
+
 # plainterm.js
 
-A dead simple lightweight pure Javascript terminal "emulator" that is intended to be used for entertainment purposes.
+A dead simple lightweight pure Javascript terminal "emulator" that mimics terminal behaviour in browser.
+
+Features:
+
+ - Tiny, pure JS, works in ES6+
+ - Easy-to-add custom commands
+ - Events
+ - Command history
+ - Command arguments existence validation
+ - API
 
 
 ## Usage
@@ -15,15 +25,15 @@ Initialize with parameters:
 
 ```javascript
 var settings = {
-    id: "terminal", //A DOM id to initialize terminal in
-    welcome: "Welcome to plainterm.js terminal emulator", //A welcome message that is being printed on initialization
+    id: "terminal", 
+    welcome: "Welcome to plainterm.js terminal emulator", 
     prompt: "user@mkrl.xyz:~$",
     commands: {
         echo: {
-            name: "echo", //Command name
-            description: "a test command with one echo arg", //Help text to be displayed when `help` command is called
-            parameters: ["a string to be echoed in console"], //An optional array of successive parameter descriptions, used when the command that needs args is being called without any args
-            func: function(params){plainterm.print(params[0])} //Function to be called when the command is executed. Accepts an array of parameters, ordered in the same way as in the previous property
+            name: "echo", 
+            description: "a test command with one echo arg", 
+            parameters: ["a string to be echoed in console"],
+            func: function(params){plainterm.print(params[0])} 
         },
         test: {
             name: "test", 
@@ -42,17 +52,48 @@ var settings = {
 plainterm.init(settings);
 ```
 
-## Working with the terminal:
+## Working with the terminal
 
 `help` - Display a list of all commands with descriptions
 
 `command` - Execute a command. Will display "Usage: command [parameter 1 description] [parameter 2 description], etc.", when needs args but called without them.
 
-## API:
+## API
+
+### plainterm object
 
 | Method  | Description | Parameters |
 | ------------- | ------------- | ------------- |
-| `init(settings)`  | Initialize a terminal in a DOM with given ID | Object. See the example above |
+| `init(settings)`  | Initialize a terminal in a DOM with given ID | `settings` object. |
 | `print(text, c)`  | Prints a given text in the terminal  | `text` - String, `c` - Boolean, optional, defaults to false. Count given string as a command (displays prompt, syntax highlight and appears in history) |
 | `run(text)`  | Emulates a command execution in a terminal (acts the same way as a use would have typed and pressed Enter)  | `text` - String |
 | `hist(up)`  | Search in command history. Returns string.  | `up` - Boolean, optional. Defaults to true. Upward/downward search. |
+
+### settings object
+
+| Parameter  | Description | Default |
+| ------------- | ------------- | ------------- |
+| `id`: string | A DOM id to initialize terminal in. | 'terminal' |
+| `welcome`: string | A welcome message that is being printed on initialization | 'plainterm.js v. [version]' |
+| `help`: boolean | Toggle default `help` command that lists all the available commands and their descriptions. | true |
+| `prompt`: string | Terminal prompt | '$ ' |
+| `commands`: object | `commands` object |  |
+
+### commands object
+
+| Parameter  | Description | 
+| ------------- | ------------- | 
+| `name`: string | Command name. | 
+| `description`: string | Command description, used for the default `help` command. | 
+| `parameters`: string array | Array of strings that desribe command line arguments in order of appearance. | 
+| `func`: function(params) | Function. Accepts an array of parameters in order of appearance (params[0] for the first argument, etc.) | 
+
+
+
+## Events
+
+| Event  | Description 
+| ------------- | ------------- |
+| `onInit`  | Terminal initialization |
+| `onCommand`  | Existing command executed |
+| `onCommand404`  | Non-existing command executed |
