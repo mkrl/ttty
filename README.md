@@ -10,6 +10,7 @@ Features:
  - Events
  - Command history
  - Command arguments existence validation
+ - "Foreground processes" imitation
  - API
 
 
@@ -100,3 +101,5 @@ plainterm.init(settings);
 | `onInit`  | Terminal initialization |
 | `onCommand`  | Existing command executed |
 | `onCommand404`  | Non-existing command executed |
+| `onProcessStart`  | Process started |
+| `onProcessStop`  | Process stopped |

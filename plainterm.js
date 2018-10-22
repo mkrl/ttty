@@ -136,11 +136,15 @@ var plainterm = (function() {
         bash.container.area.style.display = "none";
         bash.process = true;
         bash.prompt = "";
+        var event = new CustomEvent('onProcessStart');
+        bash.container.dispatchEvent(event);
     }
     function process_stop() {
         bash.container.area.style.display = "flex";
         bash.process = false;
         bash.prompt = settings.prompt;
+        var event = new CustomEvent('onProcessStop');
+        bash.container.dispatchEvent(event);
     }
     //Typing
     function type(text, speed, command = false) {
@@ -210,9 +214,3 @@ var plainterm = (function() {
         stop: process_stop
     };
 })();
-
-var ee = document.getElementById('terminal');
-
-ee.addEventListener('onCommand404', function (elem) {
-    console.log(elem);
-}, false);
