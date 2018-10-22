@@ -22,6 +22,7 @@
   "homepage": "https://github.com/mkrl/plainterm.js",
   "ignore": [
     "**/.*",
+    "images",
     "node_modules",
     "bower_components",
     "test",
