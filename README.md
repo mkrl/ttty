@@ -66,8 +66,9 @@ plainterm.init(settings);
 | ------------- | ------------- | ------------- |
 | `init(settings)`  | Initialize a terminal in a DOM with given ID | `settings` object. |
 | `print(text, c)`  | Prints a given text in the terminal  | `text` - String, `c` - Boolean, optional, defaults to false. Count given string as a command (displays prompt, syntax highlight and appears in history) |
-| `run(text)`  | Emulates a command execution in a terminal (acts the same way as a use would have typed and pressed Enter)  | `text` - String |
+| `run(text)`  | Emulates a command execution in a terminal (acts the same way as a user would have typed and pressed Enter)  | `text` - String |
 | `hist(up)`  | Search in command history. Returns string.  | `up` - Boolean, optional. Defaults to true. Upward/downward search. |
+| `type(text, speed, command)`  | Prints a text with "typing" effect. Hides and blocks user input while typing. | `text` - String, text to be printed. `speed` - integer, miliseconds. The higher the number, the slower. `command` - boolean, prepend/hide command line prompt. |
 
 ### settings object
 

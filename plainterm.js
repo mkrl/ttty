@@ -36,11 +36,12 @@ var plainterm = (function() {
 
     //Initialize terminal from parameters
     function term_init(settings) {
-        settings.id = settings.id || "terminal";
+        settings.id = settings.id || "terminal"; /* do not use "||" for default values and use custom function instead */
         settings.welcome = settings.welcome || "plainterm.js v. " + bash.version;
         settings.prompt = settings.prompt || "$ ";
-        settings.help = settings.help || true;
-        bash.help = true;
+        if (settings.help === undefined) {
+            settings.help = true;
+        }
         for (var o of Object.keys(settings.commands)) {
             var cmd = settings.commands[o];
             addcommand(cmd);
@@ -49,6 +50,7 @@ var plainterm = (function() {
         build_tree(bash.container);
         println(settings.welcome);
         var event = new CustomEvent('onInit');
+        bind_help(settings.help);
         bash.container.dispatchEvent(event);
     }
 
@@ -73,6 +75,7 @@ var plainterm = (function() {
         }
         bash.container.display = dom.firstElementChild;
         bash.container.input = input;
+        bash.container.area = input_container;
         dom.onclick = function() {input.focus();};
     }
 
@@ -128,8 +131,31 @@ var plainterm = (function() {
         }
     }
 
-    //History
+    //Typing
+    function type(text, speed, command) {
+        bash.container.area.style.display = "none";
+        if (command === undefined) {
+            command = false;
+        }
+        var line = document.createElement("p");
+        bash.container.display.appendChild(line);
+        if (command == true) {
+            line.innerHTML = settings.prompt;
+        }
+        var i = 0;
+        function typing() {
+            if (i < text.length) {
+                line.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typing, speed);
+            } else {
+                bash.container.area.style.display = "flex";
+            }
+        }
+        setTimeout(typing, speed);
+    }
 
+    //History
     function get_from_history(up = true) {
         if (bash.history.length > 0) {
             if (up === true && bash.last < bash.history.length-1) {
@@ -141,7 +167,6 @@ var plainterm = (function() {
             }
         }
     }
-
     document.addEventListener('keydown', function(event) {
         const key = event.key;
         switch (event.key) {
@@ -155,13 +180,15 @@ var plainterm = (function() {
     });
 
     //Constructing default help command
-    if bash.help {
-    bash.commands.help = new Command("help","shows a help message", [],
-        function(){
-            Object.getOwnPropertyNames(bash.commands).map(function(cmd){
-               println(bash.commands[cmd].name + " - " + bash.commands[cmd].description);
+    function bind_help(help_active) {
+        if (help_active == true) {
+        bash.commands.help = new Command("help","shows a help message", [],
+            function(){
+                Object.getOwnPropertyNames(bash.commands).map(function(cmd){
+                    println(bash.commands[cmd].name + " - " + bash.commands[cmd].description);
+                });
             });
-        });
+        }
     }
 
     //API
@@ -169,12 +196,13 @@ var plainterm = (function() {
         init: term_init,
         run: run,
         print: println,
-        hist: get_from_history
+        hist: get_from_history,
+        type: type
     };
 })();
 
 var ee = document.getElementById('terminal');
 
-ee.addEventListener('onInit', function (elem) {
+ee.addEventListener('onCommand404', function (elem) {
     console.log(elem);
 }, false);
