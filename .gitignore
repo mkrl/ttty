@@ -1,6 +1,8 @@
 # Server scripts for development
 server.sh
 server.bat
+# Releases created by Grunt
+releases/
 # Logs
 logs
 *.log

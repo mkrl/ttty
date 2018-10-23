@@ -21,11 +21,29 @@ module.exports = function(grunt) {
         src: '<%= pkg.name %>',
         dest: 'build/<%= pkg.name %>.min.js'
       }
+    },
+    compress: {
+      main: {
+        options: {
+          archive: 'releases/<%= pkg.version %>.zip',
+          quality: '1'
+        },
+        files: [{
+          expand: true,
+          cwd: 'build/',
+          src: ['<%= pkg.name %>.min.js', '<%= pkg.name %>.min.css'],
+          dest: '/'
+        },
+        {
+          src: ['<%= pkg.name %>', '<%= pkg.name %>.css', 'README.md'],
+        }]
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.registerTask('default', ['jshint','uglify', 'cssmin']);
+  grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.registerTask('default', ['jshint','uglify', 'cssmin', 'compress']);
 };
