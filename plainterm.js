@@ -6,7 +6,7 @@ var plainterm = (function() {
 
     //Master object
     var bash = {commands: {}, history: [], last: 0, process: false,
-        version: "0.4.2"
+        version: "0.4.3"
     };
 
     //Master command constructor
@@ -66,7 +66,7 @@ var plainterm = (function() {
         container.className = "terminal-container";
         input_container.className = "terminal-type";
         input.setAttribute("type", "text");
-        input.setAttribute("onkeypress", "plainterm.run(this)");
+        input.setAttribute("onkeypress", "plainterm.eval(this)");
         dom.appendChild(container);
         dom.appendChild(input_container);
         for (var e of document.getElementsByClassName("terminal-type")) {
@@ -194,7 +194,7 @@ var plainterm = (function() {
     //Constructing default help command
     function bind_help(help_active) {
         if (help_active === true) {
-        bash.commands.help = new Command("help","shows a help message", [],
+        bash.commands.help = new Command("help","shows a help message", 
             function(){
                 Object.getOwnPropertyNames(bash.commands).map(function(cmd){
                     println(bash.commands[cmd].name + " - " + bash.commands[cmd].description);
@@ -206,7 +206,8 @@ var plainterm = (function() {
     //API
     return {
         init: term_init,
-        run: run,
+        run: evaluate,
+        eval: run,
         print: println,
         hist: get_from_history,
         type: type,
