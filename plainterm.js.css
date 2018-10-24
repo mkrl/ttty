@@ -36,3 +36,15 @@ https://github.com/mkrl/plainterm.js */
 .terminal-container > p {
     margin: 0;
 }
+
+span.terminal-prompt {
+    color: #929292;
+}
+
+span.termainal-command {
+    color: #ffff7d;
+}
+
+span.terminal-error {
+    color: #cc1010;
+}

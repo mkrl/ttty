@@ -1,12 +1,65 @@
 /* plainterm.js
 https://github.com/mkrl/plainterm.js */
 
+/* 
+element.scrollIntoViewIfNeeded() implementation for non-webkit browsers
+full creadit goes to
+https://gist.github.com/doxxx/8987233
+and the original gist author
+ */
+
+
+if (!Element.prototype.scrollIntoViewIfNeeded) {
+  Element.prototype.scrollIntoViewIfNeeded = function (centerIfNeeded) {
+    centerIfNeeded = arguments.length === 0 ? true : !!centerIfNeeded;
+
+    var parent = this.parentNode,
+      parentComputedStyle = window.getComputedStyle(parent, null),
+      parentBorderTopWidth = parseInt(parentComputedStyle.getPropertyValue('border-top-width')),
+      parentBorderLeftWidth = parseInt(parentComputedStyle.getPropertyValue('border-left-width')),
+      overTop = this.offsetTop - parent.offsetTop < parent.scrollTop,
+      overBottom = (this.offsetTop - parent.offsetTop + this.clientHeight - parentBorderTopWidth) > (parent.scrollTop + parent.clientHeight),
+      overLeft = this.offsetLeft - parent.offsetLeft < parent.scrollLeft,
+      overRight = (this.offsetLeft - parent.offsetLeft + this.clientWidth - parentBorderLeftWidth) > (parent.scrollLeft + parent.clientWidth);
+
+    if (centerIfNeeded) {
+      if (overTop || overBottom) {
+        parent.scrollTop = this.offsetTop - parent.offsetTop - parent.clientHeight / 2 - parentBorderTopWidth + this.clientHeight / 2;
+      }
+
+      if (overLeft || overRight) {
+        parent.scrollLeft = this.offsetLeft - parent.offsetLeft - parent.clientWidth / 2 - parentBorderLeftWidth + this.clientWidth / 2;
+      }
+    }
+    else {
+      if (overTop) {
+        parent.scrollTop = this.offsetTop - parent.offsetTop - parentBorderTopWidth;
+      }
+
+      if (overBottom) {
+        parent.scrollTop = this.offsetTop - parent.offsetTop - parentBorderTopWidth - parent.clientHeight + this.clientHeight;
+      }
+
+      if (overLeft) {
+        parent.scrollLeft = this.offsetLeft - parent.offsetLeft - parentBorderLeftWidth;
+      }
+
+      if (overRight) {
+        parent.scrollLeft = this.offsetLeft - parent.offsetLeft - parentBorderLeftWidth - parent.clientWidth + this.clientWidth;
+      }
+    }
+ };
+}
+
+/* 
+end of gist
+ */
 
 var plainterm = (function() {
 
     //Master object
     var bash = {commands: {}, history: [], last: 0, process: false,
-        version: "0.4.3"
+        version: "0.4.4"
     };
 
     //Master command constructor
@@ -38,7 +91,8 @@ var plainterm = (function() {
     function term_init(settings) {
         settings.id = settings.id || "terminal"; /* do not use "||" for default values and use custom function instead */
         settings.welcome = settings.welcome || "plainterm.js v. " + bash.version;
-        bash.prompt = settings.prompt || "$ ";
+        settings.prompt = '<span class="terminal-prompt">' + settings.prompt + '</span>' || '<span class="terminal-prompt">$ </span>';
+        bash.prompt = settings.prompt;
         if (settings.help === undefined) {
             settings.help = true;
         }
@@ -90,7 +144,7 @@ var plainterm = (function() {
         if (c === true) {
             var cmd = document.createElement("span");
             cmd.innerHTML = content;
-            cmd.className = "command";
+            cmd.className = "termainal-command";
             line.innerHTML = bash.prompt;
             bash.container.display.appendChild(line);
             line.appendChild(cmd);
@@ -98,6 +152,7 @@ var plainterm = (function() {
         } else {
             line.innerHTML = content;
             bash.container.display.appendChild(line);
+            bash.container.input.scrollIntoViewIfNeeded();
         }
     }
 
@@ -113,7 +168,7 @@ var plainterm = (function() {
             bash.history.unshift(cmd);
             bash.container.dispatchEvent(valid_event);
         } else {
-            println(comm + " - command not found");
+            println('<span class="terminal-error">' + comm + ' - command not found</span>');
             bash.container.dispatchEvent(invalid_event);
         }
     }
@@ -127,7 +182,7 @@ var plainterm = (function() {
             }
             cmd.value = "";
             bash.last = 0;
-            bash.container.input.scrollIntoView();
+            bash.container.input.scrollIntoViewIfNeeded();
         }
     }
 
@@ -160,11 +215,13 @@ var plainterm = (function() {
                 line.innerHTML += text.charAt(i);
                 i++;
                 setTimeout(typing, speed);
+                line.scrollIntoViewIfNeeded();
             } else if (bash.process === false) {
                 bash.container.area.style.display = "flex";
             }
         }
         setTimeout(typing, speed);
+        bash.container.input.scrollIntoViewIfNeeded();
     }
 
     //History
