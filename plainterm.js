@@ -120,7 +120,7 @@ var plainterm = (function() {
         container.className = "terminal-container";
         input_container.className = "terminal-type";
         input.setAttribute("type", "text");
-        input.setAttribute("onkeypress", "plainterm.eval(this)");
+        input.setAttribute("onkeyup", "plainterm.eval(event, this)");
         dom.appendChild(container);
         dom.appendChild(input_container);
         for (var e of document.getElementsByClassName("terminal-type")) {
@@ -174,7 +174,8 @@ var plainterm = (function() {
     }
 
     //Reads text on Enter press
-    function run(cmd) {
+    function run(event, cmd) {
+        event = event || window.event;
         if(event.keyCode == 13) {
             println(cmd.value, true);
             if (cmd.value.length > 0) {

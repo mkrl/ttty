@@ -109,3 +109,10 @@ plainterm.init(settings);
 | `onCommand404`  | Non-existing command executed |
 | `onProcessStart`  | Process started |
 | `onProcessStop`  | Process stopped |
+
+Events are being dispatched by the inititial terminal container passed on init, for example:
+
+```
+const term = document.getElementById('terminal');
+term.addEventListener('onCommand', e => console.log("known command executed!"));
+```

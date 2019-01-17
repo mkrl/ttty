@@ -1,6 +1,6 @@
 {
   "name": "plainterm.js",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "A dead simple lightweight pure Javascript terminal \"emulator\" that mimics terminal behaviour in browser.",
   "main": "plainterm.js",
   "devDependencies": {
