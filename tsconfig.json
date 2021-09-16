@@ -8,6 +8,7 @@
     "strict": true,
     "sourceMap": true,
     "resolveJsonModule": true,
+    "noImplicitAny": true,
     "esModuleInterop": true,
     "noEmit": true,
     "noUnusedLocals": true,
