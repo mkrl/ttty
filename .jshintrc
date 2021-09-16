@@ -1,7 +1,0 @@
-{
-  "esversion": 6
-  "globals": {
-    "plainterm": true,
-    "settings": true
-  }
-}
