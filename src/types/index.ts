@@ -28,4 +28,6 @@ export type Terminal = {
   settings: TerminalSettings
   commandContainer: HTMLElement
   input: HTMLInputElement
+  history: string[]
+  lastHistoryIndex: number
 } & TerminalInstance
