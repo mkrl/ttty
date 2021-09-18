@@ -1,9 +1,10 @@
 import './ttty.css'
-import { TerminalSettings, Terminal } from './types'
+import { Terminal, TerminalSettings } from './types'
 import buildTree from './helpers/tree'
 import { qs } from './helpers/dom'
 import print from './api/print'
 import { attachEnterListener } from './helpers/keyboard'
+import { dispatchEvent, TerminalEvent } from './helpers/events'
 
 const initTerminal = ({
   host,
@@ -30,6 +31,7 @@ const initTerminal = ({
   }
 
   attachEnterListener(host, terminal)
+  dispatchEvent(TerminalEvent.ON_INIT, host)
   return terminal
 }
 
