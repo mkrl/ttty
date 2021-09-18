@@ -3,7 +3,7 @@ import { Terminal, TerminalSettings } from './types'
 import buildTree from './helpers/tree'
 import { qs } from './helpers/dom'
 import print from './api/print'
-import { attachEnterListener } from './helpers/keyboard'
+import { attachKeyboardListener } from './helpers/keyboard'
 import { dispatchEvent, TerminalEvent } from './helpers/events'
 
 const initTerminal = ({
@@ -26,17 +26,21 @@ const initTerminal = ({
     print: (content: string, isCommand = false) =>
       print(content, isCommand, commandContainer, input, prompt),
     settings,
+    // @TODO: has to be empty
+    history: ['1', '2', '3', '4', '5'],
+    lastHistoryIndex: 0,
     commandContainer,
     input
   }
 
-  attachEnterListener(host, terminal)
+  attachKeyboardListener(host, terminal)
   dispatchEvent(TerminalEvent.ON_INIT, host)
   return terminal
 }
 
 const term = initTerminal({
   host: qs('#app') as HTMLElement,
+  historyLength: 5,
   commands: {
     test: {
       name: 'test',
