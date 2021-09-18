@@ -45,6 +45,15 @@ const term = initTerminal({
         print('YEEHAW')
         print('HAWYEE')
       }
+    },
+    echo: {
+      name: 'echo',
+      description: 'echo a thing',
+      argDescriptions: ['thing to echo'],
+      func: ({ print }, echoString) => {
+        print('Thing you wanted:')
+        print(echoString)
+      }
     }
   }
 })
