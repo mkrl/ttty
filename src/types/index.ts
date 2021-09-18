@@ -1,26 +1,31 @@
+export type TerminalInstance = {
+  print: (text: string, isCommand?: boolean) => void
+  // Previously 'run' in public interface
+  // eval: (cmd: string) => void
+  // history: (isUp?: boolean) => string
+  // start: () => void
+  // stop: () => void
+  // type: (text: string, speed: number, showPrompt?: boolean) => void
+}
+
 export type TerminalCommand = {
   name: string
   description: string
-  argDescriptions: string[]
-  function: (...args: string[]) => void
+  argDescriptions?: string[]
+  func: (terminal: TerminalInstance, ...args: string[]) => void
 }
 
 export type TerminalSettings = {
   host: HTMLElement,
+  commands: Record<string, TerminalCommand>
   welcomeMessage?: string,
   prompt?: string
   historyLength?: number
-  commands: Record<string, TerminalCommand>
+  enableHelp?: boolean
 }
 
 export type Terminal = {
   settings: TerminalSettings
-  init: (settings: TerminalSettings) => Terminal
-  print: (text: string) => void
-  // Previously 'run' in public interface
-  eval: (cmd: string) => void
-  history: (isUp?: boolean) => string
-  start: () => void
-  stop: () => void
-  type: (text: string, speed: number, showPrompt?: boolean) => void
-}
+  commandContainer: HTMLElement
+  input: HTMLInputElement
+} & TerminalInstance
