@@ -4,7 +4,7 @@ import { create } from '../helpers/dom'
 const print = (content: string, isCommand: boolean, commandContainer: HTMLElement, input: HTMLElement, prompt: string) => {
   const line = create('p')
   if (isCommand) {
-    const cmd = document.createElement('span')
+    const cmd = create('span')
     cmd.innerHTML = content
     cmd.className = 'termainal-command'
     line.innerHTML = prompt
