@@ -1,10 +1,22 @@
 {
   "name": "ttty",
-  "version": "1.0.0",
+  "version": "0.5.0",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "module": "./dist/ttty.es.js",
+  "browser": "./dist/ttty.iife.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ttty.es.js"
+    }
+  },
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build",
-    "serve": "vite preview"
+    "build": "tsc && vite build && npm run emit",
+    "emit": "tsc -m amd -t ESNext -d --isolatedModules false  --moduleResolution node --esModuleInterop --outFile dist/index.js src/index.ts"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.6",
