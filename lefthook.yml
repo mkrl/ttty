@@ -1,4 +1,10 @@
- pre-commit:
+pre-push:
+  parallel: true
+    tsc:
+      tags: typescript
+      run: tsc --noEmit --incremental false
+
+pre-commit:
    parallel: true
    commands:
      eslint:

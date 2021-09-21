@@ -1,8 +1,10 @@
-// @TODO: think of removing this but keep in a published package
 import '../ttty.css'
 import { Terminal, TerminalSettings } from '../types'
 import buildTree from '../helpers/tree'
 import print from './print'
+import evalCommand from './evalCommand'
+import typeText from './typeText'
+import { startProcess, stopProcess } from './process'
 import { attachKeyboardListener } from '../helpers/keyboard'
 import { dispatchEvent, TerminalEvent } from '../helpers/events'
 
@@ -20,16 +22,23 @@ const initTerminal = ({
     historyLength,
     commands
   }
-  const { commandContainer, input } = buildTree(host, prompt)
+  const { commandContainer, input, inputContainer } = buildTree(host, prompt)
 
   const terminal: Terminal = {
-    print: (content: string, isCommand = false) =>
-      print(content, isCommand, commandContainer, input, prompt),
-    settings,
     history: [],
     lastHistoryIndex: 0,
+    isProcessRunning: false,
+    settings,
     commandContainer,
-    input
+    inputContainer,
+    input,
+
+    print: (content: string, isCommand = false) =>
+      print(content, isCommand, commandContainer, input, prompt),
+    run: (cmd: string) => evalCommand(cmd, terminal),
+    start: () => startProcess(terminal),
+    stop: () => stopProcess(terminal),
+    type: (text: string, speed = 20) => typeText(text, speed, terminal)
   }
 
   attachKeyboardListener(host, terminal)
