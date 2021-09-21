@@ -1,28 +1,36 @@
 import { Terminal } from '../types'
 import evalCommand from '../api/evalCommand'
 import { populateHistory, searchHistory } from './history'
+import { stopProcess } from '../api/process'
+import { dispatchEvent, TerminalEvent } from './events'
 
 export const attachKeyboardListener = (host: HTMLElement, instance: Terminal) => {
   const { input, print } = instance
-  host.addEventListener('keyup', ({ key }) => {
-    if (key === 'Enter') {
-      instance.lastHistoryIndex = 0
-      if (input.value.length > 0) {
-        populateHistory(instance)
-        evalCommand(input.value, instance)
-      } else {
-        print(' ', true)
+  host.addEventListener('keyup', ({ key, ctrlKey }) => {
+    if (ctrlKey && key === 'c' && instance.isProcessRunning) {
+      print('^C')
+      stopProcess(instance)
+      dispatchEvent(TerminalEvent.ON_PROCESS_INTERRUPT, host)
+    } else {
+      if (key === 'Enter') {
+        instance.lastHistoryIndex = 0
+        if (input.value.length > 0) {
+          print(input.value, true)
+          populateHistory(instance)
+          evalCommand(input.value, instance)
+        } else {
+          print(' ', true)
+        }
+        input.value = ''
+        return
       }
-      input.value = ''
-      console.log(instance.history)
-      return
-    }
-    if (key === 'ArrowUp') {
-      searchHistory(instance)
-      return
-    }
-    if (key === 'ArrowDown') {
-      searchHistory(instance, true)
+      if (key === 'ArrowUp') {
+        searchHistory(instance)
+        return
+      }
+      if (key === 'ArrowDown') {
+        searchHistory(instance, true)
+      }
     }
   })
 }

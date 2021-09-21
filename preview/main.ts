@@ -20,6 +20,14 @@ const term = initTerminal({
         print('Thing you wanted:')
         print(echoString)
       }
+    },
+    eval: {
+      name: 'eval',
+      description: 'eval test',
+      func: ({ print, run }) => {
+        print('Evaluating test:')
+        run('test')
+      }
     }
   }
 })

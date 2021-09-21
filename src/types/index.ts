@@ -1,11 +1,9 @@
 export type TerminalInstance = {
   print: (text: string, isCommand?: boolean) => void
-  // Previously 'run' in public interface
-  // eval: (cmd: string) => void
-  // history: (isUp?: boolean) => string
-  // start: () => void
-  // stop: () => void
-  // type: (text: string, speed: number, showPrompt?: boolean) => void
+  run: (cmd: string) => void
+  start: () => void
+  stop: () => void
+  type: (text: string, speed?: number) => void
 }
 
 export type TerminalCommand = {
@@ -27,7 +25,9 @@ export type TerminalSettings = {
 export type Terminal = {
   settings: TerminalSettings
   commandContainer: HTMLElement
+  inputContainer: HTMLElement
   input: HTMLInputElement
   history: string[]
   lastHistoryIndex: number
+  isProcessRunning: boolean
 } & TerminalInstance

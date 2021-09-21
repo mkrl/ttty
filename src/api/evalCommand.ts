@@ -3,7 +3,6 @@ import { dispatchEvent, TerminalEvent } from '../helpers/events'
 
 const evalCommand = (cmd: string, instance: Terminal) => {
   const { print } = instance
-  print(cmd, true)
   const splitCommand = cmd.split(' ')
   const command = splitCommand[0]
   const commandArguments = splitCommand.slice(1)
@@ -19,11 +18,11 @@ const evalCommand = (cmd: string, instance: Terminal) => {
         .argDescriptions.map(arg => `[${arg}]`).join(' ')}`)
     } else {
       commandInstance.func(instance, ...commandArguments)
-      dispatchEvent(TerminalEvent.ON_COMMAND, instance.settings.host)
+      dispatchEvent(TerminalEvent.ON_COMMAND, instance.settings.host, cmd)
     }
   } else {
     print(`<span class="terminal-error">command not found: ${command}</span>`)
-    dispatchEvent(TerminalEvent.ON_COMMAND_NOT_FOUND, instance.settings.host)
+    dispatchEvent(TerminalEvent.ON_COMMAND_NOT_FOUND, instance.settings.host, cmd)
   }
 }
 
