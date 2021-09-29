@@ -1,19 +1,13 @@
 {
   "name": "ttty",
   "author": "Mikhail Korolev <self@mkrl.xyz> (https://mkrl.xyz)",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
-  "module": "./dist/ttty.es.js",
-  "browser": "./dist/ttty.iife.js",
+  "main": "./dist/index.js",
+  "unpkg": "./dist/ttty.iife.js",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/ttty.es.js"
-    }
-  },
   "license" : "MIT",
   "repository": {
     "type": "git",
@@ -21,9 +15,9 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build --config lib.config.js && npm run emit",
+    "build": "tsc && vite build --config lib.config.js && npm run emit && rm dist/favicon.ico",
     "build:site": "tsc && vite build --config site.config.js",
-    "emit": "tsc -m amd -t ESNext -d --isolatedModules false  --moduleResolution node --esModuleInterop --outFile dist/index.js src/index.ts"
+    "emit": "tsc --declaration --outDir dist src/index.ts"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.6",
