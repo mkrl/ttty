@@ -1,4 +1,3 @@
-import '../ttty.css'
 import { Terminal, TerminalSettings } from '../types'
 import buildTree from '../helpers/tree'
 import print from './print'

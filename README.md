@@ -11,7 +11,6 @@ Features:
  - Command history
  - Command arguments with validation
  - "Foreground processes" imitation
- - Small but powerful
 
 
 ## Usage
@@ -32,7 +31,6 @@ import { initTerminal } from 'ttty'
 // ...
 
 const terminal = initTerminal({ /* settings */ })
-
 ```
 
 ### In a browser directly
@@ -47,7 +45,7 @@ ttty.initTerminal({ /* settings */ })
 
 Don't forget to include / import the required css:
 ```html
-<link rel="stylesheet" href="https://unpkg.com/ttty/dist/style.css">
+<link rel="stylesheet" href="https://unpkg.com/ttty/dist/ttty.css">
 ```
 
 Initialize with parameters:
@@ -82,7 +80,7 @@ initTerminal(settings)
 
 ## Working with the terminal
 
-`help` - Display a list of all commands with descriptions (TBA)
+`help` - Display a list of all commands with descriptions
 
 `command` - Execute a command. Will display "Usage: command [parameter 1 description] [parameter 2 description], etc.", when it requires arguments but is called without them.
 
@@ -145,3 +143,7 @@ Events are being dispatched by the DOM element passed on init, for example:
 const term = document.getElementById('terminal');
 term.addEventListener('onCommand', e => console.log("known command executed!"));
 ```
+
+## Browser compatibility
+
+ttty is built and distributed with ES6 in mind (including the minified package). You can always transpile & bundle it targeting your browser set of choice.

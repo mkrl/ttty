@@ -1,7 +1,7 @@
 const { resolve } = require('path')
 const { defineConfig } = require('vite')
 
-// A Vite config that produces a bundled library in /dist
+// A Vite config that produces a bundled minified library in /dist
 module.exports = defineConfig({
   build: {
     lib: {

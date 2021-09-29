@@ -1,7 +1,7 @@
 {
   "name": "ttty",
   "author": "Mikhail Korolev <self@mkrl.xyz> (https://mkrl.xyz)",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "files": [
     "dist"
   ],
@@ -17,7 +17,7 @@
     "start": "vite",
     "build": "tsc && vite build --config lib.config.js && npm run emit && rm dist/favicon.ico",
     "build:site": "tsc && vite build --config site.config.js",
-    "emit": "tsc --declaration --outDir dist src/index.ts"
+    "emit": "tsc --declaration --module esnext --moduleResolution node --target esnext --outDir dist src/index.ts"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.6",
