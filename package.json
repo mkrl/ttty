@@ -1,7 +1,7 @@
 {
   "name": "ttty",
   "author": "Mikhail Korolev <self@mkrl.xyz> (https://mkrl.xyz)",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "A dead simple lightweight TypeScript terminal \"emulator\" that mimics terminal behaviour in the browser.",
   "files": [
     "dist"
@@ -15,6 +15,7 @@
     "type": "git",
     "url": "https://github.com/mkrl/ttty.git"
   },
+  "sideEffects": false,
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build --config lib.config.js && npm run emit && rm dist/favicon.ico",
