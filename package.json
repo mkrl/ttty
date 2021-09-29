@@ -1,5 +1,6 @@
 {
   "name": "ttty",
+  "author": "Mikhail Korolev <self@mkrl.xyz> (https://mkrl.xyz)",
   "version": "0.5.0",
   "files": [
     "dist",
@@ -13,9 +14,15 @@
       "import": "./dist/ttty.es.js"
     }
   },
+  "license" : "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mkrl/ttty.git"
+  },
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build && npm run emit",
+    "build": "tsc && vite build --config lib.config.js && npm run emit",
+    "build:site": "tsc && vite build --config site.config.js",
     "emit": "tsc -m amd -t ESNext -d --isolatedModules false  --moduleResolution node --esModuleInterop --outFile dist/index.js src/index.ts"
   },
   "devDependencies": {

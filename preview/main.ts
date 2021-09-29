@@ -1,6 +1,7 @@
 import initTerminal from '../src/api/init'
+import './index.css'
 
-const term = initTerminal({
+const terminal = initTerminal({
   host: document.querySelector('#terminal') as HTMLElement,
   prompt: 'ttty:~$ ',
   commands: {
@@ -32,6 +33,9 @@ const term = initTerminal({
   }
 })
 
+// Focus terminal input as soon as terminal is initialized
+terminal.input.focus()
+
 // For the ease of debugging, the terminal instance is exposed on `window`
 // @ts-ignore
-window.terminal = term
+window.terminal = terminal

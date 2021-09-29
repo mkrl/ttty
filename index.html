@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
         <title>ttty</title>
-        <style>
-        body {
-        color: white;
-        background-color: #0f000f;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='528' height='528' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23444444' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%230a4c55'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E");
-        }
-        .container > div {
-            margin: 0 auto;
-        }
-        .terminal {
-            width: 500px;
-            height: 600px;
-        }
-        </style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
+        <meta name="description" content="A lightweight (1kb) browser terminal powered by TypeScript" />
+        <meta name="theme-color" content="#000000">
+        <link rel="icon" href="favicon.svg">
     </head>
 <body>
-<div class="container">
-<div id="terminal">
-</div>
-</div>
-<div class="container">
-<center>
-<p>Easy to use, pure and simple. Unlimited possibilities.</p>
-<p>2 kilobytes of code</p>
-</center>
-</div>
-
+    <aside id="terminal">
+    </aside>
+    <main>
+        <h1>ttty</h1>
+        <hr/>
+        <h3>A tiny browser terminal "emulator"</h3>
+        <article>
+            <p>
+                Unlike <a href="https://github.com/vercel/hyper" target="_blank" rel="noreferrer noopener">hyper</a>
+                or <a href="https://github.com/xtermjs/xterm.js" target="_blank" rel="noreferrer noopener">xterm.js</a>, this is just a tool to bring the barebones terminal experience to your browser.
+                At minimal cost, with a powerful but small API in ~1kb of gzipped code.
+            </p>
+            <p>
+                Available on NPM or as a "drop-in" ES module / js file.
+            </p>
+            <h4>
+                Featuring:
+            </h4>
+            <ul>
+                <li>Tiny, dependency-free and built with modern JS</li>
+                <li>Easy-to-add custom commands</li>
+                <li>Events</li>
+                <li>Command history</li>
+                <li>Command arguments with validation</li>
+                <li>"Foreground processes" imitation</li>
+                <li>Small but powerful</li>
+            </ul>
+        </article>
+    </main>
 <script type="module" src="/preview/main.ts"></script>
 </body>
 </html>
