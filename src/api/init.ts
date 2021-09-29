@@ -7,12 +7,14 @@ import typeText from './typeText'
 import { startProcess, stopProcess } from './process'
 import { attachKeyboardListener } from '../helpers/keyboard'
 import { dispatchEvent, TerminalEvent } from '../helpers/events'
+import createHelp from '../helpers/help'
 
 const initTerminal = ({
   host,
   welcomeMessage = 'ttty v.1.0.0',
   prompt = '$: ',
   historyLength = 50,
+  enableHelp = true,
   commands
 }: TerminalSettings) => {
   const settings = {
@@ -20,6 +22,7 @@ const initTerminal = ({
     welcomeMessage,
     prompt,
     historyLength,
+    enableHelp,
     commands
   }
   const { commandContainer, input, inputContainer } = buildTree(host, prompt)
@@ -38,7 +41,10 @@ const initTerminal = ({
     run: (cmd: string) => evalCommand(cmd, terminal),
     start: () => startProcess(terminal),
     stop: () => stopProcess(terminal),
-    type: (text: string, speed = 20) => typeText(text, speed, terminal)
+    type: (text: string, speed = 60, callback) => typeText(text, speed, terminal, callback)
+  }
+  if (enableHelp) {
+    terminal.settings.commands.help = createHelp(terminal)
   }
 
   attachKeyboardListener(host, terminal)

@@ -3,9 +3,9 @@ export type TerminalInstance = {
   run: (cmd: string) => void
   start: () => void
   stop: () => void
-  type: (text: string, speed?: number) => void
+  type: (text: string, speed?: number, callback?: () => void) => void
+  isProcessRunning: boolean
 }
-
 export type TerminalCommand = {
   name: string
   description: string
@@ -29,5 +29,4 @@ export type Terminal = {
   input: HTMLInputElement
   history: string[]
   lastHistoryIndex: number
-  isProcessRunning: boolean
 } & TerminalInstance

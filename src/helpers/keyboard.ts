@@ -12,6 +12,7 @@ export const attachKeyboardListener = (host: HTMLElement, instance: Terminal) =>
       stopProcess(instance)
       dispatchEvent(TerminalEvent.ON_PROCESS_INTERRUPT, host)
     } else {
+      if (instance.isProcessRunning) return
       if (key === 'Enter') {
         instance.lastHistoryIndex = 0
         if (input.value.length > 0) {

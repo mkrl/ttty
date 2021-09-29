@@ -53,25 +53,25 @@ Initialize with parameters:
 
 ```js
 const settings = {
-    host: "terminal",
+    host: document.querySelector("#terminal"),
     prompt: "user@ttty:~$",
     commands: {
         echo: {
             name: "echo", 
             description: "a test command with one echo arg", 
-            parameters: ["a string to be echoed in console"],
-            func: function({ print }, argument) { print(argument) } 
+            argDescriptions: ["a string to be echoed in console"],
+            func: ({ print }, argument) => { print(argument) } 
         },
         test: {
             name: "test", 
             description: "a test command with no args", 
-            func: function({ print }) { print("foo") } 
+            func: ({ print }) => { print("foo") } 
         },
         multiply: {
             name: "multiply",
             description: "Multiply two numbers",
-            parameters: ["number one", "number two"],
-            func: function({ print }, one, two){ print(Number(one) * Number(two)) }
+            argDescriptions: ["number one", "number two"],
+            func: ({ print }, one, two) => { print(Number(one) * Number(two)) }
         }
     }
 }
@@ -103,7 +103,7 @@ An object that's being passed to every command function & returned by `initTermi
 | `run(text)`  | Emulates a command execution in a terminal (acts the same way as a user would have typed and pressed Enter)  | `text` - String |
 | `start()`  | Starts a "foreground process": user input is blocked and command prompt never appears. |  |
 | `stop()`  | Stops "foreground process". |  |
-| `type(text, speed, command)`  | Prints a text with "typing" effect. Hides and blocks user input while typing. | `text` - String, text to be printed. `speed` - integer, miliseconds. The higher the number, the slower. `command` - boolean, prepend/hide command line prompt. |
+| `type(text, speed, callback)`  | Prints a text with "typing" effect. Hides and blocks user input while typing. | `text` - String, text to be printed. `speed` - integer, miliseconds. The higher the number, the slower. `callback` - function, gets executed when the process is finished. |
 
 ### settings object
 

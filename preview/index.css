@@ -33,6 +33,16 @@ article {
     line-height: 1.6;
 }
 
+li::marker {
+    color: black;
+}
+
+li[data-exec] {
+    cursor: pointer;
+    text-decoration: underline;
+    color: mediumblue;
+}
+
 @media (max-width: 860px) {
     body {
         flex-direction: column;

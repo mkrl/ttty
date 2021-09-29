@@ -2,7 +2,7 @@ import { Terminal } from '../types'
 import { startProcess, stopProcess } from './process'
 import { create } from '../helpers/dom'
 
-const typeText = (text: string, speed: number, terminal: Terminal) => {
+const typeText = (text: string, speed: number, terminal: Terminal, callback?: () => void) => {
   startProcess(terminal)
   const line = create('p')
   terminal.commandContainer.append(line)
@@ -13,6 +13,7 @@ const typeText = (text: string, speed: number, terminal: Terminal) => {
       i++
       setTimeout(type, speed)
     } else {
+      callback && callback()
       stopProcess(terminal)
     }
   }
