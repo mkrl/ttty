@@ -1,80 +1,106 @@
 
-# plainterm.js
+# ttty
 
-A dead simple lightweight pure Javascript terminal "emulator" that mimics terminal behaviour in browser.
+A dead simple lightweight TypeScript terminal "emulator" that mimics terminal behaviour in browser.
 
 Features:
 
- - Tiny, pure JS, works in ES6+
+ - Tiny, dependency-free and built with modern JS
  - Easy-to-add custom commands
  - Events
  - Command history
- - Command arguments existence validation
+ - Command arguments with validation
  - "Foreground processes" imitation
- - API
+ - Small but powerful
 
 
 ## Usage
 
-Download the latest compiled JS and CSS release or install with Bower:
+### With module bundler
 
-`bower install plainterm.js`
+Add the latest release with:
 
-Include the js in your page:
+`npm install ttty`
+or
+`yarn add ttty`
 
-```html
-<script src="./plainterm.js"></script>
+Initialize the terminal in a particular DOM element with:
+
+```js
+import { initTerminal } from 'ttty'
+
+// ...
+
+const terminal = initTerminal({ /* settings */ })
+
 ```
 
+### In a browser directly
 
+```html
+<!-- As a global JS file -->
+<script src="./ttty.iffe.js"></script>
+<!-- As a ES6 module -->
+<script type="module" src="./ttty.es.js"></script>
+```
+
+Don't forget to include / import the required css:
+```html
+<link rel="stylesheet" href="styles.css">
+```
 
 Initialize with parameters:
 
-```javascript
-var settings = {
-    id: "terminal", 
-    welcome: "Welcome to plainterm.js terminal emulator", 
-    prompt: "user@mkrl.xyz:~$",
+```js
+const settings = {
+    host: "terminal",
+    prompt: "user@ttty:~$",
     commands: {
         echo: {
             name: "echo", 
             description: "a test command with one echo arg", 
             parameters: ["a string to be echoed in console"],
-            func: function(params){plainterm.print(params[0])} 
+            func: function({ print }, argument) { print(argument) } 
         },
         test: {
             name: "test", 
             description: "a test command with no args", 
-            func: function(){plainterm.print("testing things")} 
+            func: function({ print }) { print("foo") } 
         },
         multiply: {
             name: "multiply",
             description: "Multiply two numbers",
             parameters: ["number one", "number two"],
-            func: function(params){plainterm.print(params[0]*params[1])}
+            func: function({ print }, one, two){ print(Number(one) * Number(two)) }
         }
     }
-};
+}
 
-plainterm.init(settings);
+initTerminal(settings)
 ```
 
 ## Working with the terminal
 
-`help` - Display a list of all commands with descriptions
+`help` - Display a list of all commands with descriptions (TBA)
 
 `command` - Execute a command. Will display "Usage: command [parameter 1 description] [parameter 2 description], etc.", when it requires arguments but is called without them.
 
 ## API
 
-### plainterm object
+### initTerminal
 
 | Method  | Description | Parameters |
 | ------------- | ------------- | ------------- |
-| `init(settings)`  | Initialize a terminal in a DOM with given ID | `settings` object. |
-| `print(text, c)`  | Prints a given text in the terminal (accepts raw HTML)  | `text` - String, `c` - Boolean, optional, defaults to false. Count given string as a command (displays prompt, syntax highlight and appears in history) |
+| `init(settings)`  | Initialize a terminal in a given DOM element | `settings` object. |
+
+### terminal
+
+An object that's being passed to every command function & returned by `initTerminal`
+
+| Method  | Description | Parameters |
+| ------------- | ------------- | ------------- |
+| `print(text, c)`  | Prints a given text in the terminal (accepts raw HTML)  | `text` - String, `c` - Boolean, optional, defaults to false. Count given string as a command (displays prompt & syntax highlight) |
 | `run(text)`  | Emulates a command execution in a terminal (acts the same way as a user would have typed and pressed Enter)  | `text` - String |
-| `hist(up)`  | Search in command history. Returns string.  | `up` - Boolean, optional. Defaults to true. Upward/downward search. |
 | `start()`  | Starts a "foreground process": user input is blocked and command prompt never appears. |  |
 | `stop()`  | Stops "foreground process". |  |
 | `type(text, speed, command)`  | Prints a text with "typing" effect. Hides and blocks user input while typing. | `text` - String, text to be printed. `speed` - integer, miliseconds. The higher the number, the slower. `command` - boolean, prepend/hide command line prompt. |
@@ -83,7 +109,7 @@ plainterm.init(settings);
 
 | Parameter  | Description | Default |
 | ------------- | ------------- | ------------- |
-| `id`: string | A DOM id to initialize terminal in. | 'terminal' |
+| `host`: DOM element | A DOM id to initialize terminal in. |  |
 | `welcome`: string | A welcome message that is being printed on initialization | 'plainterm.js v. [version]' |
 | `help`: boolean | Toggle default `help` command that lists all the available commands and their descriptions. | true |
 | `prompt`: string | Terminal prompt | '$ ' |

@@ -1,12 +1,11 @@
 .terminal {
     overflow-y: auto;
     overflow-x: hidden;
-    border: 1px black solid;
     background-color: black;
     color: white;
     padding: 15px;
-    position: relative;
-    font-family: "Courier New";
+    box-sizing: border-box;
+    font-family: "Courier New", monospace;
 }
 
 .terminal-type {
@@ -22,7 +21,7 @@
     background: transparent;
     border: 0;
     color: white;
-    font-family: "Courier New";
+    font-family: "Courier New", monospace;
     font-size: 16px;
 }
 .terminal-type > input:focus{
