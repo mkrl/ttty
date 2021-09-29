@@ -11,7 +11,7 @@ import createHelp from '../helpers/help'
 
 const initTerminal = ({
   host,
-  welcomeMessage = 'ttty v.1.0.0',
+  welcomeMessage,
   prompt = '$: ',
   historyLength = 50,
   enableHelp = true,
@@ -49,6 +49,7 @@ const initTerminal = ({
 
   attachKeyboardListener(host, terminal)
   dispatchEvent(TerminalEvent.ON_INIT, host)
+  welcomeMessage && (terminal.print(welcomeMessage))
   return terminal
 }
 

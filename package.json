@@ -1,7 +1,7 @@
 {
   "name": "ttty",
   "author": "Mikhail Korolev <self@mkrl.xyz> (https://mkrl.xyz)",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "files": [
     "dist",
     "src"
