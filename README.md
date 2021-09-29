@@ -39,14 +39,15 @@ const terminal = initTerminal({ /* settings */ })
 
 ```html
 <!-- As a global JS file -->
-<script src="./ttty.iffe.js"></script>
-<!-- As a ES6 module -->
-<script type="module" src="./ttty.es.js"></script>
+<script src="https://unpkg.com/ttty/dist/ttty.iife.js"></script>
+```
+```js
+ttty.initTerminal({ /* settings */ })
 ```
 
 Don't forget to include / import the required css:
 ```html
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://unpkg.com/ttty/dist/style.css">
 ```
 
 Initialize with parameters:
@@ -109,10 +110,11 @@ An object that's being passed to every command function & returned by `initTermi
 
 | Parameter  | Description | Default |
 | ------------- | ------------- | ------------- |
-| `host`: DOM element | A DOM id to initialize terminal in. |  |
-| `welcome`: string | A welcome message that is being printed on initialization | 'plainterm.js v. [version]' |
+| `host`: DOM element | A DOM element to initialize terminal in. |  |
+| `welcomeMessage`: string | A welcome message that is being printed on initialization |  |
 | `help`: boolean | Toggle default `help` command that lists all the available commands and their descriptions. | true |
-| `prompt`: string | Terminal prompt | '$ ' |
+| `prompt`: string | Terminal prompt | '$: ' |
+| `historyLength`: number | A maximum amount of commands that can be stored in the terminal history | 50 |
 | `commands`: object | `commands` object |  |
 
 ### commands object
@@ -120,9 +122,9 @@ An object that's being passed to every command function & returned by `initTermi
 | Parameter  | Description | 
 | ------------- | ------------- | 
 | `name`: string | Command name. | 
-| `description`: string | Command description, used for the default `help` command. | 
-| `parameters`: string array | Array of strings that desribe command line arguments in order of appearance. | 
-| `func`: function(params) | Function. Accepts an array of parameters in order of appearance (params[0] for the first argument, etc.) | 
+| `description`: string | Command description, used for the default `help` command (when enabled). | 
+| `argDescriptions`: string array | Array of strings that describe command line arguments in order of appearance. | 
+| `func`: function(terminal, ...arguments) | Function. Accepts an array of parameters in order of appearance (i.e. `function(terminal, one, two)` will correspond to two arguments passed as `command one two`) | 
 
 
 
@@ -135,8 +137,9 @@ An object that's being passed to every command function & returned by `initTermi
 | `onCommand404`  | Non-existing command executed |
 | `onProcessStart`  | Process started |
 | `onProcessStop`  | Process stopped |
+| `onProcessInterrupt`  | Process interrupted with a keyboard |
 
-Events are being dispatched by the inititial terminal container passed on init, for example:
+Events are being dispatched by the DOM element passed on init, for example:
 
 ```
 const term = document.getElementById('terminal');

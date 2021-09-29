@@ -5,6 +5,8 @@ const docArea = document.querySelector('main')
 
 const terminal = initTerminal({
   host: document.querySelector('#terminal') as HTMLElement,
+  welcomeMessage: `Welcome to ttty @ ${navigator.userAgent}<br/><br/>
+     * Documentation:  <a href="https://github.com/mkrl/ttty/blob/master/README.md" target="_blank">https://github.com/mkrl/ttty</a><br/><br/>`,
   prompt: 'ttty:~$ ',
   commands: {
     echo: {

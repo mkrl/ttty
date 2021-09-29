@@ -27,9 +27,9 @@ h1 {
 h3 {
     color: #979797;
     font-size: 1.5rem;
-    margin-bottom: 2rem;
 }
 article {
+    margin-top: 2rem;
     line-height: 1.6;
 }
 
