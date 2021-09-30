@@ -10,7 +10,7 @@
   "module": "./dist/index.js",
   "unpkg": "./dist/ttty.iife.js",
   "types": "./dist/index.d.ts",
-  "license" : "MIT",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/mkrl/ttty.git"
@@ -31,6 +31,7 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
+    "semantic-release": "^18.0.0",
     "typescript": "^4.3.2",
     "vite": "^2.5.4"
   }
