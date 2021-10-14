@@ -9,4 +9,4 @@ pre-commit:
    commands:
      eslint:
        glob: "*.{ts}"
-       run: yarn eslint {staged_files}
+       run: npx eslint {staged_files}

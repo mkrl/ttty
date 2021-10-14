@@ -1,0 +1,19 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.1
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Check code style
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck

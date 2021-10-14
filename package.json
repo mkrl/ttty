@@ -20,15 +20,17 @@
     "start": "vite",
     "build": "tsc && vite build --config lib.config.js && npm run emit && rm dist/favicon.ico",
     "build:site": "tsc && vite build --config site.config.js",
-    "emit": "tsc --declaration --module esnext --moduleResolution node --target esnext --outDir dist src/index.ts"
+    "emit": "tsc --declaration --module esnext --moduleResolution node --target esnext --outDir dist src/index.ts",
+    "typecheck": "tsc --noEmit --incremental false",
+    "lint": "eslint \"{src,preview}/**/*.{ts,tsx}\""
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.6",
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
-    "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.1",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "semantic-release": "^18.0.0",
