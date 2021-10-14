@@ -53,7 +53,7 @@ Initialize with parameters:
 ```js
 const settings = {
     host: document.querySelector("#terminal"),
-    prompt: "user@ttty:~$",
+    prompt: "user@ttty:~$ ",
     commands: {
         echo: {
             name: "echo", 
@@ -98,7 +98,7 @@ An object that's being passed to every command function & returned by `initTermi
 
 | Method  | Description | Parameters |
 | ------------- | ------------- | ------------- |
-| `print(text, c)`  | Prints a given text in the terminal (accepts raw HTML)  | `text` - String, `c` - Boolean, optional, defaults to false. Count given string as a command (displays prompt & syntax highlight) |
+| `print(text, isCommand)`  | Prints a given text in the terminal (accepts raw HTML)  | `text` - String, `isCommand` - Boolean, optional, defaults to false. Count given string as a command (displays prompt & syntax highlight) |
 | `run(text)`  | Emulates a command execution in a terminal (acts the same way as a user would have typed and pressed Enter)  | `text` - String |
 | `start()`  | Starts a "foreground process": user input is blocked and command prompt never appears. |  |
 | `stop()`  | Stops "foreground process". |  |
@@ -110,7 +110,7 @@ An object that's being passed to every command function & returned by `initTermi
 | ------------- | ------------- | ------------- |
 | `host`: DOM element | A DOM element to initialize terminal in. |  |
 | `welcomeMessage`: string | A welcome message that is being printed on initialization |  |
-| `help`: boolean | Toggle default `help` command that lists all the available commands and their descriptions. | true |
+| `enableHelp`: boolean | Toggle default `help` command that lists all the available commands and their descriptions. | true |
 | `prompt`: string | Terminal prompt | '$: ' |
 | `historyLength`: number | A maximum amount of commands that can be stored in the terminal history | 50 |
 | `commands`: object | `commands` object |  |
