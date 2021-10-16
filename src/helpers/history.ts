@@ -17,13 +17,23 @@ export const searchHistory = (instance: Terminal, isDown?: boolean) => {
   const { history, lastHistoryIndex } = instance
   const endOfHistory = history.length - 1
   let newIndex: number
+  // If User pressed Down and history is empty, return;
   if (isDown && lastHistoryIndex === 0) return
+
+  // if User pressed Up and user is currently on first executed command, return;
+  if (!isDown && lastHistoryIndex === history.length) return
+
+  if (endOfHistory < 0) return
   // @TODO: still not consistent, index is duplicated once when searching down
+
+  // If Down key is pressed, check if value of newIndex is < 0?
+  //  At this point, if lastHistoryIndex is 1, we should show empty string.
   if (isDown) {
     newIndex = lastHistoryIndex - 1
+    instance.input.value = newIndex - 1 >= 0 ? history[newIndex - 1] : ''
   } else {
-    newIndex = lastHistoryIndex === endOfHistory ? 0 : lastHistoryIndex + 1
+    newIndex = lastHistoryIndex + 1
+    instance.input.value = history[lastHistoryIndex]
   }
-  instance.input.value = history[isDown ? newIndex : lastHistoryIndex]
   instance.lastHistoryIndex = newIndex
 }
