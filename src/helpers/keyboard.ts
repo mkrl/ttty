@@ -1,10 +1,10 @@
-import { Terminal } from '../types'
+import { TerminalInstance } from '../types'
 import evalCommand from '../api/evalCommand'
 import { populateHistory, searchHistory } from './history'
 import { stopProcess } from '../api/process'
 import { dispatchEvent, TerminalEvent } from './events'
 
-export const attachKeyboardListener = (host: HTMLElement, instance: Terminal) => {
+export const attachKeyboardListener = (host: HTMLElement, instance: TerminalInstance) => {
   const { input, print } = instance
   host.addEventListener('keyup', ({ key, ctrlKey }) => {
     if (ctrlKey && key === 'c' && instance.isProcessRunning) {

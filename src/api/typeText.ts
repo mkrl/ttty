@@ -1,8 +1,8 @@
-import { Terminal } from '../types'
+import { TerminalInstance } from '../types'
 import { startProcess, stopProcess } from './process'
 import { create } from '../helpers/dom'
 
-const typeText = (text: string, speed: number, terminal: Terminal, callback?: () => void) => {
+const typeText = (text: string, speed: number, terminal: TerminalInstance, callback?: () => void) => {
   startProcess(terminal)
   const line = create('p')
   terminal.commandContainer.append(line)

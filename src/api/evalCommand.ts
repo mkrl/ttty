@@ -1,7 +1,7 @@
-import { Terminal } from '../types'
+import { TerminalInstance } from '../types'
 import { dispatchEvent, TerminalEvent } from '../helpers/events'
 
-const evalCommand = (cmd: string, instance: Terminal) => {
+const evalCommand = (cmd: string, instance: TerminalInstance) => {
   const { print } = instance
   const splitCommand = cmd.split(' ')
   const command = splitCommand[0]

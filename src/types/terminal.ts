@@ -1,11 +1,16 @@
 import { TerminalSettings } from './terminalSettings'
-import { TerminalInstance } from './terminalInstance'
 
-export type Terminal = {
+export type TerminalInstance = {
   settings: TerminalSettings
   commandContainer: HTMLElement
   inputContainer: HTMLElement
   input: HTMLInputElement
   history: string[]
   lastHistoryIndex: number
-} & TerminalInstance
+  print: (text: string, isCommand?: boolean) => void
+  run: (cmd: string) => void
+  start: () => void
+  stop: () => void
+  type: (text: string, speed?: number, callback?: () => void) => void
+  isProcessRunning: boolean
+}

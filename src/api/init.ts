@@ -1,4 +1,4 @@
-import { Terminal, TerminalSettings } from '../types'
+import { TerminalInstance, TerminalSettings } from '../types'
 import buildTree from '../helpers/tree'
 import print from './print'
 import evalCommand from './evalCommand'
@@ -26,7 +26,7 @@ const initTerminal = ({
   }
   const { commandContainer, input, inputContainer } = buildTree(host, prompt)
 
-  const terminal: Terminal = {
+  const terminal: TerminalInstance = {
     history: [],
     lastHistoryIndex: 0,
     isProcessRunning: false,
