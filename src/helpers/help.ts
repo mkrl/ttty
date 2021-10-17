@@ -1,6 +1,6 @@
-import { Terminal, TerminalCommand } from '../types'
+import { TerminalInstance, TerminalCommand } from '../types'
 
-const createHelp = (terminal: Terminal): TerminalCommand => ({
+const createHelp = (terminal: TerminalInstance): TerminalCommand => ({
   name: 'help',
   description: 'shows a full list of all available commands',
   func: ({ print }) => {

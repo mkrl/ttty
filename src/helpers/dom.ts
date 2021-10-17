@@ -1,4 +1,4 @@
-import { Terminal } from '../types'
+import { TerminalInstance } from '../types'
 
 export const create = (tagName: string, className?: string, content?: string) => {
   const element = document.createElement(tagName)
@@ -7,7 +7,7 @@ export const create = (tagName: string, className?: string, content?: string) =>
   return element
 }
 
-export const toggleInput = (terminal: Terminal, enable = false) => {
+export const toggleInput = (terminal: TerminalInstance, enable = false) => {
   // Has to be done in order to preserve the focus on terminal click when disabled
   terminal.input.readOnly = !enable
   terminal.inputContainer.style.opacity = enable ? '' : '0'

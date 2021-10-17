@@ -1,6 +1,6 @@
-import { Terminal } from '../types'
+import { TerminalInstance } from '../types'
 
-export const populateHistory = (instance: Terminal) => {
+export const populateHistory = (instance: TerminalInstance) => {
   const { input: { value }, history, settings: { historyLength } } = instance
   if (value === history[0]) {
     return
@@ -13,7 +13,7 @@ export const populateHistory = (instance: Terminal) => {
   instance.lastHistoryIndex = 0
 }
 
-export const searchHistory = (instance: Terminal, isDown?: boolean) => {
+export const searchHistory = (instance: TerminalInstance, isDown?: boolean) => {
   const { history, lastHistoryIndex } = instance
   const endOfHistory = history.length - 1
   let newIndex: number
