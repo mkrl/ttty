@@ -38,6 +38,29 @@ const terminal = initTerminal({
           }
         })
       }
+    },
+    github: {
+      name: 'github',
+      description: 'gets a Github user\'s name and number of public repositories',
+      argDescriptions: ['Github username'],
+      func: ({ print, start, stop }, username) => {
+        start()
+        fetch(`https://api.github.com/users/${username}`)
+          .then(response => {
+            if (!response.ok) { throw response }
+            return response.json()
+          })
+          .then(data => {
+            print(`${data.name ?? username} has ${data.public_repos} public repos`)
+          })
+          .catch((error) => {
+            if (error.status === 404) {
+              print(`Can't find this ${username} on Github`)
+            } else {
+              print('We got an error talking to Github')
+            }
+          }).finally(() => stop())
+      }
     }
   }
 })
