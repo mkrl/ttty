@@ -52,7 +52,6 @@ const terminal = initTerminal({
           })
           .then(data => {
             print(`${data.name ?? username} has ${data.public_repos} public repos`)
-            stop()
           })
           .catch((error) => {
             if (error.status === 404) {
@@ -60,8 +59,7 @@ const terminal = initTerminal({
             } else {
               print('We got an error talking to Github')
             }
-            stop()
-          })
+          }).finally(() => stop())
       }
     }
   }
