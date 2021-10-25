@@ -4,7 +4,7 @@ import { create } from '../helpers/dom'
 const print = (content: string, isCommand: boolean, commandContainer: HTMLElement, input: HTMLElement, prompt: string) => {
   const line = create('p', undefined, isCommand ? prompt : content)
   if (isCommand) {
-    const cmd = create('span', 'termainal-command', content)
+    const cmd = create('span', 'terminal-command', content)
     line.append(cmd)
   }
   commandContainer.append(line)
