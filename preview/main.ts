@@ -1,5 +1,6 @@
 import initTerminal from '../src/api/init'
 import './index.css'
+import { setColor } from './colors'
 
 const docArea = document.querySelector('main')
 
@@ -9,16 +10,16 @@ const terminal = initTerminal({
      * Documentation:  <a href="https://github.com/mkrl/ttty/blob/master/README.md" target="_blank">https://github.com/mkrl/ttty</a><br/><br/>`,
   prompt: 'ttty:~$ ',
   commands: {
-    echo: {
-      name: 'echo',
-      description: 'a test command with one echo arg',
-      argDescriptions: ['a string to be echoed in console'],
-      func: ({ print }, argument) => { print(argument) }
-    },
     test: {
       name: 'test',
-      description: 'A test command with no args that just prints some text',
-      func: ({ type }) => { type('foo') }
+      description: 'a test command with no arguments that just prints some text',
+      func: ({ type }) => { type('The quick brown fox jumps over the lazy dog', 20) }
+    },
+    echo: {
+      name: 'echo',
+      description: 'echo whatever you pass as an argument',
+      argDescriptions: ['a string to be echoed in console'],
+      func: ({ print }, argument) => { print(argument) }
     },
     multiply: {
       name: 'multiply',
@@ -38,6 +39,19 @@ const terminal = initTerminal({
           }
         })
       }
+    },
+    color: {
+      name: 'color',
+      description: 'set a terminal color scheme',
+      argDescriptions: ['color scheme'],
+      func: ({ print }, color) => {
+        print(setColor(color))
+      }
+    },
+    clear: {
+      name: 'clear',
+      description: 'clear the history',
+      func: ({ commandContainer }) => { commandContainer.innerHTML = '' }
     },
     github: {
       name: 'github',

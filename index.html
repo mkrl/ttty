@@ -7,7 +7,18 @@
         <meta name="description" content="A lightweight (1kb) browser terminal powered by TypeScript" />
         <meta name="theme-color" content="#000000">
         <link rel="icon" href="favicon.svg">
-        <link rel="stylesheet" href="/ttty.css">
+        <style>
+            body {
+                height: 100vh;
+                margin: 0;
+                display: flex;
+            }
+            .terminal, aside {
+                width: 500px;
+                flex-shrink: 0;
+                background-color: black;
+            }
+        </style>
     </head>
 <body>
     <aside id="terminal">
@@ -15,7 +26,7 @@
     <main>
         <h1>ttty</h1>
         <hr/>
-        <h3>A tiny browser terminal "emulator"</h3>
+        <h2>A tiny browser terminal "emulator"</h2>
         <article>
             <p>
                 Unlike <a href="https://github.com/vercel/hyper" target="_blank" rel="noreferrer noopener">hyper</a>
@@ -25,15 +36,16 @@
             <p>
                 Available on NPM or as a "drop-in" ES module / js file.
             </p>
-            <h4>
+            <h3>
                 Featuring:
-            </h4>
+            </h3>
             <ul>
                 <li>Tiny, dependency-free and built with modern JS</li>
                 <li>Easy-to-add custom commands</li>
+                <li data-exec="color random">Customizable look</li>
                 <li>Events</li>
                 <li>Command history</li>
-                <li data-exec="help">A help message</li>
+                <li data-exec="help">A built-in help message</li>
                 <li data-exec="multiply">Command arguments with validation</li>
                 <li data-exec="start">Interruptable "foreground process" imitation</li>
                 <li>Small but powerful API</li>

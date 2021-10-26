@@ -43,11 +43,6 @@ const terminal = initTerminal({ /* settings */ })
 ttty.initTerminal({ /* settings */ })
 ```
 
-Don't forget to include / import the required css:
-```html
-<link rel="stylesheet" href="https://unpkg.com/ttty/dist/ttty.css">
-```
-
 Initialize with parameters:
 
 ```js
@@ -144,6 +139,20 @@ const term = document.getElementById('terminal');
 term.addEventListener('onCommand', e => console.log("known command executed!"));
 ```
 
+## Custom styling
+
+You can customize the look defining custom CSS variables. If you have multiple instances, you can even have each instance in its' own style!
+
+| Variable  | Description
+| ------------- | ------------- |
+| `--terminal-bg-color`  | Background color |
+| `--terminal-fg-color`  | Text color |
+| `--terminal-font`  | Terminal font-family |
+| `--terminal-accent-color`  | Accent color |
+| `--terminal-error-color`  | Error color |
+
 ## Browser compatibility
 
 ttty is built and distributed with ES6 in mind (including the minified package). You can always transpile & bundle it targeting your browser set of choice.
+
+Browsers that do not support CSS variables (IE < 11) might not be able to make use of custom themes. In order to use ttty with older browsers please rebuild this with custom properties removed.

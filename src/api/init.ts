@@ -7,6 +7,7 @@ import { startProcess, stopProcess } from './process'
 import { attachKeyboardListener } from '../helpers/keyboard'
 import { dispatchEvent, TerminalEvent } from '../helpers/events'
 import createHelp from '../helpers/help'
+import loadStyle from '../helpers/loadStyle'
 
 const initTerminal = ({
   host,
@@ -24,6 +25,7 @@ const initTerminal = ({
     enableHelp,
     commands
   }
+  loadStyle()
   const { commandContainer, input, inputContainer } = buildTree(host, prompt)
 
   const terminal: TerminalInstance = {

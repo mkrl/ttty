@@ -18,9 +18,10 @@
   "sideEffects": false,
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build --config lib.config.js && npm run emit && rm dist/favicon.ico",
-    "build:site": "tsc && vite build --config site.config.js",
+    "build": "npm run build:css && tsc && vite build --config lib.config.js && npm run emit && rm dist/favicon.ico",
+    "build:site": "npm run build:css && tsc && vite build --config site.config.js",
     "emit": "tsc --declaration --module esnext --moduleResolution node --target esnext --outDir dist src/index.ts",
+    "build:css": "node scripts/buildCss.js",
     "typecheck": "tsc --noEmit --incremental false",
     "lint": "eslint \"{src,preview}/**/*.{ts,tsx}\""
   },
