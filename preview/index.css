@@ -3,6 +3,11 @@ main {
     font-family: "Helvetica", sans-serif;
     max-width: 800px;
 }
+
+aside {
+    box-shadow: 8px 0 20px 0 #00000021;
+}
+
 h1,h3 { margin-top: 0 }
 hr {
     border: 0;
@@ -40,5 +45,8 @@ li[data-exec] {
     .terminal {
         width: 100%;
         height: 30%;
+    }
+    aside {
+        box-shadow: none;
     }
 }
