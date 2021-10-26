@@ -23,6 +23,7 @@
     color: white;
     font-family: "Courier New", monospace;
     font-size: 16px;
+    padding: 0px;
 }
 .terminal-type > input:focus{
     border: none !important;
