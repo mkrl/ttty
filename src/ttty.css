@@ -1,11 +1,14 @@
 .terminal {
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: black;
-    color: white;
+    background-color: var(--terminal-bg-color, black);
     padding: 15px;
     box-sizing: border-box;
-    font-family: "Courier New", monospace;
+}
+
+.terminal * {
+    color: var(--terminal-fg-color, white);
+    font-family: var(--terminal-font, "Courier New", monospace);
 }
 
 .terminal-type {
@@ -20,10 +23,8 @@
     flex-grow: 2;
     background: transparent;
     border: 0;
-    color: white;
-    font-family: "Courier New", monospace;
-    font-size: 16px;
-    padding: 0px;
+    font-size: inherit;
+    padding: 0;
 }
 .terminal-type > input:focus {
     border: none;
@@ -34,14 +35,10 @@
     margin: 0;
 }
 
-span.terminal-prompt {
-    color: #929292;
-}
-
 span.terminal-command {
-    color: #ffff7d;
+    color: var(--terminal-accent-color, #ffff7d);
 }
 
 span.terminal-error {
-    color: #cc1010;
+    color: var(--terminal-error-color, #cc1010);
 }
