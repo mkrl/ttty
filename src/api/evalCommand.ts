@@ -7,6 +7,23 @@ const evalCommand = (cmd: string, instance: TerminalInstance) => {
   const command = splitCommand[0]
   const commandArguments = splitCommand.slice(1)
 
+  if (commandArguments.length > 0 && commandArguments[0].includes('"')) {
+    let longArg:string = ''
+    let endIndex:number = 0
+
+    commandArguments.every((element, index) => {
+      if (index > 0 && element.includes('"')) {
+        endIndex = index
+        return false
+      }
+      return true
+    })
+
+    longArg = commandArguments.slice(0, endIndex + 1).join(' ')
+    longArg = longArg.replaceAll('"', '')
+    commandArguments.splice(0, endIndex + 1, longArg)
+  }
+
   const commandInstance = instance.settings.commands[command]
 
   if (commandInstance) {
