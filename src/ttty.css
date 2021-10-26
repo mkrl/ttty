@@ -16,7 +16,7 @@
 .terminal-type > span {
     padding-right: 7pt;
 }
-.terminal-type > input{
+.terminal-type > input {
     flex-grow: 2;
     background: transparent;
     border: 0;
@@ -25,9 +25,9 @@
     font-size: 16px;
     padding: 0px;
 }
-.terminal-type > input:focus{
-    border: none !important;
-    outline: none !important;
+.terminal-type > input:focus {
+    border: none;
+    outline: none;
 }
 
 .terminal-container > p {

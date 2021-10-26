@@ -31,6 +31,13 @@ Contributing your first bit of code is simple:
 5. Push changes to your fork
 6. Open a pull request against `master` branch
 
+#### Make CSS changes
+
+We use a very simple CSS build system to ship raw CSS with the bundle.
+If you want to make visual changes to how the terminal looks, edit `src/ttty.css` and then run `npm run build:css` to apply your changes.
+
+If you want to edit the preview website look, head over to `preview/index.css` (no extra steps are nessesary). Some critical CSS can also be found in `index.html`, inlined for better FCP.
+
 #### Styleguides
 
 We use [standard js](https://standardjs.com/) (with minor tweaks) as our style set.
