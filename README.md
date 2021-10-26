@@ -43,11 +43,6 @@ const terminal = initTerminal({ /* settings */ })
 ttty.initTerminal({ /* settings */ })
 ```
 
-Don't forget to include / import the required css:
-```html
-<link rel="stylesheet" href="https://unpkg.com/ttty/dist/ttty.css">
-```
-
 Initialize with parameters:
 
 ```js
