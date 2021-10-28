@@ -3,10 +3,12 @@ import { dispatchEvent, TerminalEvent } from '../helpers/events'
 
 const evalCommand = (cmd: string, instance: TerminalInstance) => {
   const { print } = instance
-  const splitCommand = cmd.split(' ')
-  const command = splitCommand[0]
-  const commandArguments = splitCommand.slice(1)
-
+  const [command, ...args] = cmd.split(' ')
+  const argMatches = args.join(' ').match(/('[^']+'|"[^"]+"|[^\s'"]+)/g)
+  const commandArguments = argMatches === null
+    ? []
+    : argMatches
+      .map(element => element.replace(/(^['"]|['"]$)/g, ''))
   const commandInstance = instance.settings.commands[command]
 
   if (commandInstance) {
