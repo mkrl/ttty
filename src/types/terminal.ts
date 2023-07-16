@@ -12,5 +12,6 @@ export type TerminalInstance = {
   start: () => void
   stop: () => void
   type: (text: string, speed?: number, callback?: () => void) => void
+  setPrompt: (newPrompt: string) => void
   isProcessRunning: boolean
 }
