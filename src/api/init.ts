@@ -8,6 +8,7 @@ import { attachKeyboardListener } from '../helpers/keyboard'
 import { dispatchEvent, TerminalEvent } from '../helpers/events'
 import createHelp from '../helpers/help'
 import loadStyle from '../helpers/loadStyle'
+import setPrompt from './prompt'
 
 const initTerminal = ({
   host,
@@ -38,11 +39,12 @@ const initTerminal = ({
     input,
 
     print: (content: string, isCommand = false) =>
-      print(content, isCommand, commandContainer, input, prompt),
+      print(content, isCommand, commandContainer, input, settings),
     run: (cmd: string) => evalCommand(cmd, terminal),
     start: () => startProcess(terminal),
     stop: () => stopProcess(terminal),
-    type: (text: string, speed = 60, callback) => typeText(text, speed, terminal, callback)
+    type: (text: string, speed = 60, callback) => typeText(text, speed, terminal, callback),
+    setPrompt: (newPrompt: string) => setPrompt(newPrompt, inputContainer, settings)
   }
   if (enableHelp) {
     terminal.settings.commands.help = createHelp(terminal)

@@ -98,6 +98,7 @@ An object that's being passed to every command function & returned by `initTermi
 | `start()`  | Starts a "foreground process": user input is blocked and command prompt never appears. |  |
 | `stop()`  | Stops "foreground process". |  |
 | `type(text, speed, callback)`  | Prints a text with "typing" effect. Hides and blocks user input while typing. | `text` - String, text to be printed. `speed` - integer, miliseconds. The higher the number, the slower. `callback` - function, gets executed when the process is finished. |
+| `setPrompt()`  | Set terminal prompt | `newPrompt` - String   |
 
 ### settings object
 

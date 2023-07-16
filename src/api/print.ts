@@ -1,8 +1,9 @@
 import { create } from '../helpers/dom'
+import { TerminalSettings } from '../types'
 
 // Prints a new line in the terminal
-const print = (content: string, isCommand: boolean, commandContainer: HTMLElement, input: HTMLElement, prompt: string) => {
-  const line = create('p', undefined, isCommand ? prompt : content)
+const print = (content: string, isCommand: boolean, commandContainer: HTMLElement, input: HTMLElement, settings: TerminalSettings) => {
+  const line = create('p', undefined, isCommand ? settings.prompt : content)
   if (isCommand) {
     const cmd = create('span', 'terminal-command', content)
     line.append(cmd)
