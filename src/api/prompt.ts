@@ -4,7 +4,7 @@ import { TerminalSettings } from '../types'
 const setPrompt = (prompt: string, inputContainer: HTMLElement, settings: TerminalSettings) => {
   settings.prompt = prompt
   const promptContainer = inputContainer.querySelector('span') as HTMLElement
-  promptContainer.textContent = prompt
+  promptContainer.innerHTML = prompt
 }
 
 export default setPrompt
