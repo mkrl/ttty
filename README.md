@@ -109,6 +109,7 @@ An object that's being passed to every command function & returned by `initTermi
 | `enableHelp`: boolean | Toggle default `help` command that lists all the available commands and their descriptions. | true |
 | `prompt`: string | Terminal prompt | '$: ' |
 | `historyLength`: number | A maximum amount of commands that can be stored in the terminal history | 50 |
+| `history`: string[] | A default value for terminal history (can be used to preserve history across sessions) | [] |
 | `commands`: object | `commands` object |  |
 
 ### commands object
