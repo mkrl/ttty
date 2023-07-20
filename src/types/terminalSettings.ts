@@ -6,5 +6,6 @@ export type TerminalSettings = {
   welcomeMessage?: string,
   prompt?: string
   historyLength?: number
+  history?: string[],
   enableHelp?: boolean
 }

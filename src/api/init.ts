@@ -15,6 +15,7 @@ const initTerminal = ({
   welcomeMessage,
   prompt = '$: ',
   historyLength = 50,
+  history = [],
   enableHelp = true,
   commands
 }: TerminalSettings) => {
@@ -30,7 +31,7 @@ const initTerminal = ({
   const { commandContainer, input, inputContainer } = buildTree(host, prompt)
 
   const terminal: TerminalInstance = {
-    history: [],
+    history,
     lastHistoryIndex: 0,
     isProcessRunning: false,
     settings,
