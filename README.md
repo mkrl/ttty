@@ -91,14 +91,14 @@ initTerminal(settings)
 
 An object that's being passed to every command function & returned by `initTerminal`
 
-| Method  | Description | Parameters |
-| ------------- | ------------- | ------------- |
-| `print(text, isCommand)`  | Prints a given text in the terminal (accepts raw HTML)  | `text` - String, `isCommand` - Boolean, optional, defaults to false. Count given string as a command (displays prompt & syntax highlight) |
-| `run(text)`  | Emulates a command execution in a terminal (acts the same way as a user would have typed and pressed Enter)  | `text` - String |
-| `start()`  | Starts a "foreground process": user input is blocked and command prompt never appears. |  |
-| `stop()`  | Stops "foreground process". |  |
-| `type(text, speed, callback)`  | Prints a text with "typing" effect. Hides and blocks user input while typing. | `text` - String, text to be printed. `speed` - integer, miliseconds. The higher the number, the slower. `callback` - function, gets executed when the process is finished. |
-| `setPrompt()`  | Set terminal prompt | `newPrompt` - String   |
+| Method                                             | Description                                                                                                                                                       | Parameters                                                                                                                                |
+|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `print(text, isCommand)`                           | Prints a given text in the terminal (accepts raw HTML)                                                                                                            | `text` - String, `isCommand` - Boolean, optional, defaults to false. Count given string as a command (displays prompt & syntax highlight) |
+| `run(text)`                                        | Emulates a command execution in a terminal (acts the same way as a user would have typed and pressed Enter)                                                       | `text` - String                                                                                                                           |
+| `start()`                                          | Starts a "foreground process": user input is blocked and command prompt never appears.                                                                            |                                                                                                                                           |
+| `stop()`                                           | Stops "foreground process".                                                                                                                                       |                                                                                                                                           |
+| `type(text, speed, isCommand) => Promise<boolean>` | Prints a text with "typing" effect. Hides and blocks user input while typing. Resolves to either `true` or `false` depending on process interruption by the user. | `text` - String, text to be printed. `speed` - integer, miliseconds. The higher the number, the slower. `isCommand` - Boolean, optional, defaults to false. Count given string as a command (displays prompt & syntax highlight)                                  |
+| `setPrompt()`                                      | Set terminal prompt                                                                                                                                               | `newPrompt` - String                                                                                                                      |
 
 ### settings object
 

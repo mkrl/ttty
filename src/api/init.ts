@@ -44,7 +44,7 @@ const initTerminal = ({
     run: (cmd: string) => evalCommand(cmd, terminal),
     start: () => startProcess(terminal),
     stop: () => stopProcess(terminal),
-    type: (text: string, speed = 60, callback) => typeText(text, speed, terminal, callback),
+    type: (text: string, speed = 60, isCommand) => typeText(text, speed, terminal, isCommand),
     setPrompt: (newPrompt: string) => setPrompt(newPrompt, inputContainer, settings)
   }
   if (enableHelp) {
