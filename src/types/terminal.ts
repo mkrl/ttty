@@ -11,7 +11,7 @@ export type TerminalInstance = {
   run: (cmd: string) => void
   start: () => void
   stop: () => void
-  type: (text: string, speed?: number, callback?: () => void) => void
+  type: (text: string, speed?: number, isCommand?: boolean) => Promise<boolean>
   setPrompt: (newPrompt: string) => void
   isProcessRunning: boolean
 }

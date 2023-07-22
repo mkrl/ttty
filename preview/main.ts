@@ -33,11 +33,24 @@ const terminal = initTerminal({
       func: (terminal) => {
         terminal.print('Downloading more RAM...')
         terminal.print('Press Ctrl + C if you think you have enough RAM')
-        terminal.type('............................................', 160, () => {
-          if (terminal.isProcessRunning) {
-            terminal.print('Successfully downloaded 42gb of RAM!')
-          }
-        })
+        terminal.type('............................................', 100)
+          .then((finished) => {
+            if (finished) {
+              terminal.print('Successfully downloaded 42gb of RAM!')
+            }
+          })
+      }
+    },
+    enqueue: {
+      name: 'enqueue',
+      description: 'pretend like someone else is typing in the terminal',
+      func: (terminal) => {
+        terminal.type('test', 70, true)
+          .then((finished) => {
+            if (finished) {
+              terminal.run('test')
+            }
+          })
       }
     },
     color: {
