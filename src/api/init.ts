@@ -39,8 +39,8 @@ const initTerminal = ({
     inputContainer,
     input,
 
-    print: (content: string, isCommand = false) =>
-      print(content, isCommand, commandContainer, input, settings),
+    print: (content: string, isCommand = false, scrollIntoView = true) =>
+      print(content, isCommand, scrollIntoView, commandContainer, input, settings),
     run: (cmd: string) => evalCommand(cmd, terminal),
     start: () => startProcess(terminal),
     stop: () => stopProcess(terminal),
