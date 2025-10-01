@@ -4,13 +4,14 @@ import { TerminalSettings } from '../types'
 // Prints a new line in the terminal
 const print = (
   content: string,
+  cstyle: string | undefined,
   isCommand: boolean,
   scrollIntoView: boolean,
   commandContainer: HTMLElement,
   input: HTMLElement,
   settings: TerminalSettings
 ) => {
-  const line = create('p', undefined, isCommand ? settings.prompt : content)
+  const line = create('p', cstyle , isCommand ? settings.prompt : content)
   if (isCommand) {
     const cmd = create('span', 'terminal-command', content)
     line.append(cmd)
