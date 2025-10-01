@@ -7,7 +7,7 @@ export type TerminalInstance = {
   input: HTMLInputElement
   history: string[]
   lastHistoryIndex: number
-  print: (text: string, isCommand?: boolean, scrollIntoView?: boolean) => void
+  print: (text: string, isCommand?: boolean, scrollIntoView?: boolean, cstyle?: string) => void
   run: (cmd: string) => void
   start: () => void
   stop: () => void
